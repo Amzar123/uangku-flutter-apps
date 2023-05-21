@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'loginpage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,119 +8,139 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Project',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'MyProject'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  // Void and Function
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            // height: MediaQuery.of(context).size.height,
+            width: double.infinity, // 100% max width parent
+            // decoration: BoxDecoration(
+            //   border: Border.all(color: Color.fromARGB(255, 0, 4, 255)),
+            // ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 300, // sets the container height to 300
+                  width: double
+                      .infinity, // sets container width to 100% of the parent width
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF57C5B6), // sets container color to #57C5B6
+                    borderRadius: BorderRadius.only(
+                      // sets container bottom border radius to 18px
+                      bottomLeft: Radius.circular(180),
+                      bottomRight: Radius.circular(180),
+                    ),
+                    // border: Border.all(
+                    //   color: Colors.black, // sets border color to black
+                    //   width: 1, // sets border width to 1px
+                    // ),
+                  ),
+                  // add other widgets, such as child and margin here if needed
+                ),
+                Container(
+                  //container 1
+                  // margin: const EdgeInsets.only(bottom: 16, top: 32),
+                  // margin: EdgeInsets.only(top: 150),
+                  // decoration: BoxDecoration(
+                  //   border:
+                  //       Border.all(color: const Color.fromARGB(255, 255, 0, 0)),
+                  // ),
+                  child: Container(
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          child: Image(image: AssetImage('assets/logo.png')),
+                          width: 200,
+                          height: 200,
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(bottom: 30, top: 20),
+                          child: const Text(
+                            'TemanInvest',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color(0xFF002B5B),
+                              fontSize: 32,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'Inter',
+                            ),
+                          ),
+                        ),
+                        Container(
+                          child: const Text(
+                            'Sahabat investasi masyarakat',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color(0xFF1A5F7A),
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  //container 2
+                  margin: EdgeInsets.only(top: 120),
+                  // decoration: BoxDecoration(
+                  //   border:
+                  //       Border.all(color: const Color.fromARGB(255, 255, 0, 0)),
+                  // ),
+                  height: 40,
+                  width: 240,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => login_page(title: "title")));
+                    },
+                    child: Text(
+                      "Mulai aplikasi",
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0.0,
+                      primary: Color(0xFF57C5B6),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
