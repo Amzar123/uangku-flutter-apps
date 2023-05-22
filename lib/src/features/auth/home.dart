@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Column(
                       children: <Widget>[
                         Container(
-                          // child: Image(image: AssetImage('assets/logo.png')),
+                          child: Image(image: AssetImage('assets/logo.png')),
                           width: 200,
                           height: 200,
                         ),
