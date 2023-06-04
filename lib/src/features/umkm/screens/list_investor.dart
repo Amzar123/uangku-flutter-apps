@@ -1,4 +1,5 @@
 import 'package:apps/src/constants.dart';
+import 'package:apps/src/features/umkm/screens/pengajuan_investor.dart';
 import 'package:flutter/material.dart';
 
 class ListInvestor extends StatelessWidget {
@@ -7,7 +8,6 @@ class ListInvestor extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(icon: Icon(Icons.chevron_left), onPressed: () {}),
         title: Text(
           "Investor",
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -79,11 +79,14 @@ class ListInvestor extends StatelessWidget {
                           Column(
                             children: [
                               ElevatedButton(
-                                style: ElevatedButton.styleFrom(backgroundColor:
-                                    primaryColor, // <-- Button color
-                                foregroundColor:
-                                    warnaKeempat,),
-                                  onPressed: () {},
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        primaryColor, // <-- Button color
+                                    foregroundColor: warnaKeempat,
+                                  ),
+                                  onPressed: () {
+                                    _navigateToNextScreen(context);
+                                  },
                                   child: Text(
                                     "Apply",
                                     style: TextStyle(color: Colors.black),
@@ -147,11 +150,14 @@ class ListInvestor extends StatelessWidget {
                           Column(
                             children: [
                               ElevatedButton(
-                                style: ElevatedButton.styleFrom(backgroundColor:
-                                    primaryColor, // <-- Button color
-                                foregroundColor:
-                                    warnaKeempat,),
-                                  onPressed: () {},
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        primaryColor, // <-- Button color
+                                    foregroundColor: warnaKeempat,
+                                  ),
+                                  onPressed: () {
+                                    _navigateToNextScreen(context);
+                                  },
                                   child: Text(
                                     "Apply",
                                     style: TextStyle(color: Colors.black),
@@ -215,11 +221,14 @@ class ListInvestor extends StatelessWidget {
                           Column(
                             children: [
                               ElevatedButton(
-                                style: ElevatedButton.styleFrom(backgroundColor:
-                                    primaryColor, // <-- Button color
-                                foregroundColor:
-                                    warnaKeempat,),
-                                  onPressed: () {},
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        primaryColor, // <-- Button color
+                                    foregroundColor: warnaKeempat,
+                                  ),
+                                  onPressed: () {
+                                    _navigateToNextScreen(context);
+                                  },
                                   child: Text(
                                     "Apply",
                                     style: TextStyle(color: Colors.black),
@@ -283,11 +292,14 @@ class ListInvestor extends StatelessWidget {
                           Column(
                             children: [
                               ElevatedButton(
-                                style: ElevatedButton.styleFrom(backgroundColor:
-                                    primaryColor, // <-- Button color
-                                foregroundColor:
-                                    warnaKeempat,),
-                                  onPressed: () {},
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        primaryColor, // <-- Button color
+                                    foregroundColor: warnaKeempat,
+                                  ),
+                                  onPressed: () {
+                                    _navigateToNextScreen(context);
+                                  },
                                   child: Text(
                                     "Apply",
                                     style: TextStyle(color: Colors.black),
@@ -304,4 +316,9 @@ class ListInvestor extends StatelessWidget {
       ),
     );
   }
+}
+
+void _navigateToNextScreen(BuildContext context) {
+  Navigator.of(context)
+      .push(MaterialPageRoute(builder: (context) => PengajuanInvestor()));
 }

@@ -1,9 +1,14 @@
 import 'package:apps/src/constants.dart';
 import 'package:flutter/material.dart';
 
-class DashboardInvestorScreen extends StatelessWidget {
+class DashboardInvestorScreen extends StatefulWidget {
   const DashboardInvestorScreen({super.key});
 
+  @override
+  State<DashboardInvestorScreen> createState() => _DashboardInvestorScreenState();
+}
+
+class _DashboardInvestorScreenState extends State<DashboardInvestorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

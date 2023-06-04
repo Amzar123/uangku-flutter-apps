@@ -24,7 +24,7 @@ class _HomeUmkmState extends State<HomeUmkm> {
   static const List<Widget> _pages = <Widget>[
     HomeUMKM(),
     ListInvestor(),
-    ProfileUmkm(),
+    ProfileUmkmScreen(),
   ];
 
   @override
