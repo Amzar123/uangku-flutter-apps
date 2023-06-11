@@ -2,20 +2,9 @@ import 'package:apps/src/constants.dart';
 import 'package:apps/src/currency_format.dart';
 import 'package:flutter/material.dart';
 
-class TopUpScreen extends StatefulWidget {
-  @override
-  _TopUpScreenState createState() => _TopUpScreenState();
-}
-
-class _TopUpScreenState extends State<TopUpScreen> {
+class TopUpScreen extends StatelessWidget {
   final List<int> topUpOptions = [100000, 500000, 1000000, 2000000];
   final TextEditingController customAmountController = TextEditingController();
-
-  @override
-  void dispose() {
-    customAmountController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,24 +38,24 @@ class _TopUpScreenState extends State<TopUpScreen> {
                       _showConfirmationDialog(context, amount);
                     },
                     style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        backgroundColor: secondaryColor),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      backgroundColor: secondaryColor,
+                    ),
                     child: Text(
                       CurrencyFormat.convertToIdr(amount, 0),
                       style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
                     ),
                   );
                 }).toList(),
               ],
             ),
-            SizedBox(
-              height: 20,
-            ),
+            SizedBox(height: 20),
             GestureDetector(
               onTap: () {
                 _showCustomAmountDialog(context);
@@ -74,7 +63,10 @@ class _TopUpScreenState extends State<TopUpScreen> {
               child: Text(
                 'Nominal Lainnya',
                 style: TextStyle(
-                    color: secondaryColor, fontWeight: FontWeight.bold, fontSize: 20),
+                  color: secondaryColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
               ),
             ),
           ],
@@ -90,7 +82,8 @@ class _TopUpScreenState extends State<TopUpScreen> {
         return AlertDialog(
           title: Text('Konfirmasi Top Up'),
           content: Text(
-              'Apakah Anda yakin ingin melakukan top up sebesar ${CurrencyFormat.convertToIdr(amount, 0)}?'),
+            'Apakah Anda yakin ingin melakukan top up sebesar ${CurrencyFormat.convertToIdr(amount, 0)}?',
+          ),
           actions: [
             TextButton(
               onPressed: () {
