@@ -1,4 +1,6 @@
+import 'package:apps/src/constants.dart';
 import 'package:flutter/material.dart';
+import '../../homeinvestor.dart';
 import 'register1.dart';
 
 class login_page extends StatefulWidget {
@@ -26,8 +28,8 @@ class _login_pageState extends State<login_page> {
                 Container(
                   // container1 apps header
                   decoration: BoxDecoration(
-                    // border: Border.all(color: Color.fromARGB(255, 255, 153, 0)),
-                  ),
+                      // border: Border.all(color: Color.fromARGB(255, 255, 153, 0)),
+                      ),
                   //height: 50,
                   margin: EdgeInsets.only(bottom: 30, top: 20),
                   child: Column(
@@ -37,7 +39,7 @@ class _login_pageState extends State<login_page> {
                         children: [
                           Container(//apps logo,
 
-                          ),
+                              ),
                           Container(
                             child: const Text(
                               'TemanInvest',
@@ -76,7 +78,7 @@ class _login_pageState extends State<login_page> {
                   margin: EdgeInsets.only(bottom: 30, top: 20),
                   child: Column(
                     crossAxisAlignment:
-                    CrossAxisAlignment.start, // Align children to the start
+                        CrossAxisAlignment.start, // Align children to the start
                     children: [
                       Padding(
                         padding: EdgeInsets.all(8.0),
@@ -87,11 +89,12 @@ class _login_pageState extends State<login_page> {
                         child: TextField(
                           decoration: InputDecoration(
                             contentPadding:
-                            EdgeInsets.symmetric(vertical: 16.0),
+                                EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "Email",
                             prefixIcon: Icon(Icons.email_outlined),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50), // Set the border radius to make it rounded
+                              borderRadius: BorderRadius.circular(
+                                  50), // Set the border radius to make it rounded
                             ),
                           ),
                         ),
@@ -109,12 +112,12 @@ class _login_pageState extends State<login_page> {
                           style: TextStyle(fontSize: 16.0, color: Colors.black),
                           decoration: InputDecoration(
                             contentPadding:
-                            EdgeInsets.symmetric(vertical: 16.0),
+                                EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "Password",
                             prefixIcon: Icon(Icons.lock_outlined),
                             border: OutlineInputBorder(
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(50)),
+                                    BorderRadius.all(Radius.circular(50)),
                                 borderSide: BorderSide(
                                   color: Color(0xFF5C62FF),
                                   width: 3,
@@ -140,10 +143,11 @@ class _login_pageState extends State<login_page> {
                   width: 200,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (_) => registerpage1(title: "title")));
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const Home(),
+                        ),
+                      );
                     },
                     child: Text(
                       "Masuk",
@@ -151,80 +155,37 @@ class _login_pageState extends State<login_page> {
                     ),
                     style: ElevatedButton.styleFrom(
                       elevation: 0.0,
-                      primary: Color(0xFF57C5B6),
+                      backgroundColor: primaryColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50),
                       ),
                     ),
                   ),
                 ),
-                Container(
-                  //container 4 text
-                  decoration: BoxDecoration(
-                    //  border: Border.all(color: Color.fromARGB(255, 221, 0, 255)),
-                  ),
-                  margin: EdgeInsets.only(bottom: 20, top: 20),
-                  child: Text("or"),
+                SizedBox(
+                  height: 20,
                 ),
-                Container(
-                  //container 5 button sign up
-                  decoration: BoxDecoration(
-                    //   border: Border.all(color: Color.fromARGB(255, 0, 255, 157)),
-                  ),
-                  margin: EdgeInsets.only(bottom: 30, top: 20),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: 250,
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            // Add your onPressed logic here
-                          },
-                          icon: Icon(Icons
-                              .facebook), // Replace Icons.add with your desired icon
-                          label: Text(
-                              'Sign Up With Facebook'), // Replace 'Add' with your desired button label
-                          style: ElevatedButton.styleFrom(
-                            // Customize the button's appearance here
-                            primary: Colors
-                                .blue, // Set the button's background color
-                            onPrimary:
-                            Colors.white, // Set the button's text color
-                            elevation: 4, // Set the button's elevation
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  8), // Set the button's border radius
-                            ),
-                          ),
-                        ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Belum memiliki akun?",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => registerpage1(title: "title")));
+                      },
+                      child: Text(
+                        ' Daftar sekarang',
+                        style: TextStyle(
+                            color: secondaryColor, fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(height: 10),
-                      Container(
-                        width: 250,
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            // Add your onPressed logic here
-                          },
-                          icon: Icon(Icons
-                              .facebook), // Replace Icons.add with your desired icon
-                          label: Text(
-                              'Sign Up With Google'), // Replace 'Add' with your desired button label
-                          style: ElevatedButton.styleFrom(
-                            // Customize the button's appearance here
-                            primary: Colors
-                                .blue, // Set the button's background color
-                            onPrimary:
-                            Colors.white, // Set the button's text color
-                            elevation: 4, // Set the button's elevation
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  8), // Set the button's border radius
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    )
+                  ],
                 ),
               ],
             ),

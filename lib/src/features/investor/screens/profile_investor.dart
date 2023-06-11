@@ -1,4 +1,10 @@
 import 'package:apps/src/constants.dart';
+import 'package:apps/src/features/investor/screens/profile/data_umkm.dart';
+import 'package:apps/src/features/investor/screens/profile/kebijakan_privasi.dart';
+import 'package:apps/src/features/investor/screens/profile/kemanan_akun.dart';
+import 'package:apps/src/features/investor/screens/profile/pusat_bantuan.dart';
+import 'package:apps/src/features/investor/screens/profile/rekening_bank.dart';
+import 'package:apps/src/features/investor/screens/profile/syarat_dan_ketentuan.dart';
 import 'package:flutter/material.dart';
 
 class ProfileInvestorScreen extends StatelessWidget {
@@ -47,7 +53,7 @@ class ProfileInvestorScreen extends StatelessWidget {
                   //   width: 10,
                   // ),
                   Expanded(
-                      child: Icon(Icons.edit),
+                    child: Icon(Icons.edit),
                   ),
                 ],
               ),
@@ -75,21 +81,37 @@ class ProfileInvestorScreen extends StatelessWidget {
                         ),
                         title: Text('Data Investor'),
                         trailing: Icon(Icons.chevron_right),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const DataUmkm(),
+                            ),
+                          );
+                        },
                       ),
-                      
                       ListTile(
-                        leading: Icon(Icons.person, color: warnaKetiga),
+                        leading: Icon(Icons.account_balance_wallet, color: warnaKetiga),
                         title: Text('Rekening Bank'),
                         trailing: Icon(Icons.chevron_right),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const RekeningBank(),
+                            ),
+                          );
+                        },
                       ),
-                      
                       ListTile(
-                        leading: Icon(Icons.person, color: warnaKetiga),
+                        leading: Icon(Icons.security, color: warnaKetiga),
                         title: Text('Keamanan Akun'),
                         trailing: Icon(Icons.chevron_right),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const KeamananAkun(),
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -111,30 +133,45 @@ class ProfileInvestorScreen extends StatelessWidget {
                     children: <Widget>[
                       ListTile(
                         leading: Icon(
-                          Icons.person,
+                          Icons.help,
                           color: warnaKetiga,
                         ),
                         title: Text('Pusat Bantuan'),
                         trailing: Icon(Icons.chevron_right),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const PusatBantuan(),
+                            ),
+                          );
+                        },
                       ),
-                      
                       ListTile(
-                        leading: Icon(Icons.person, color: warnaKetiga),
+                        leading: Icon(Icons.description, color: warnaKetiga),
                         title: Text('Syarat dan Ketentuan'),
                         trailing: Icon(Icons.chevron_right),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const SNK(),
+                            ),
+                          );
+                        },
                       ),
-                      
                       ListTile(
-                        leading: Icon(Icons.person, color: warnaKetiga),
+                        leading: Icon(Icons.privacy_tip, color: warnaKetiga),
                         title: Text('Kebijakan Privasi'),
                         trailing: Icon(Icons.chevron_right),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const kebijakanPrivasi(),
+                            ),
+                          );
+                        },
                       ),
-                      
                       ListTile(
-                        leading: Icon(Icons.person, color: warnaKetiga),
+                        leading: Icon(Icons.exit_to_app, color: warnaKetiga),
                         title: Text('Logout'),
                         trailing: Icon(Icons.chevron_right),
                         onTap: () {},
