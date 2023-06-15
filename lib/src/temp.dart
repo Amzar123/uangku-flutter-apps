@@ -26,10 +26,12 @@ class TempScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     color: primaryColor),
                 width: 500.0,
-                padding: new EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                margin: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                child: new Column(children: [
-                  new Text(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                margin:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                child: const Column(children: [
+                  Text(
                     "UMKM",
                     style: TextStyle(fontWeight: FontWeight.w500),
                   ),
@@ -49,10 +51,12 @@ class TempScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     color: primaryColor),
                 width: 500.0,
-                padding: new EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                margin: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                child: new Column(children: [
-                  new Text(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                margin:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                child: const Column(children: [
+                  Text(
                     "Investor",
                     style: TextStyle(fontWeight: FontWeight.w500),
                   ),
@@ -63,7 +67,9 @@ class TempScreen extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const MyHomePage(title: "TUBES",),
+                    builder: (context) => const MyHomePage(
+                      title: "TUBES",
+                    ),
                   ),
                 );
               },
@@ -72,10 +78,12 @@ class TempScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     color: primaryColor),
                 width: 500.0,
-                padding: new EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                margin: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                child: new Column(children: [
-                  new Text(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                margin:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                child: const Column(children: [
+                  Text(
                     "Auth",
                     style: TextStyle(fontWeight: FontWeight.w500),
                   ),

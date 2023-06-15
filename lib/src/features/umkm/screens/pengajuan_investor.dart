@@ -67,7 +67,7 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
             value: textFieldCubit,
             child: Scaffold(
               appBar: AppBar(
-                title: Text(
+                title: const Text(
                   "Pengajuan Investor",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
@@ -75,18 +75,18 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
               ),
               body: SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                          margin: EdgeInsets.all(5),
-                          padding: EdgeInsets.symmetric(
+                          margin: const EdgeInsets.all(5),
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 20, vertical: 20),
                           width: double.infinity,
                           child: Column(
                             children: [
-                              Row(
+                              const Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Column(
@@ -100,7 +100,7 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                   )
                                 ],
                               ),
-                              SizedBox(height: 24),
+                              const SizedBox(height: 24),
                               Column(
                                 children: [
                                   Row(
@@ -115,8 +115,8 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                           borderRadius:
                                               BorderRadius.circular(10),
                                           border: Border.all(
-                                              color: Color(0x68666363)),
-                                          color: Color(0xffffffff),
+                                              color: const Color(0x68666363)),
+                                          color: const Color(0xffffffff),
                                         ),
                                         child: const Text('500.000',
                                             style: TextStyle(fontSize: 20)),
@@ -129,15 +129,15 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                           borderRadius:
                                               BorderRadius.circular(10),
                                           border: Border.all(
-                                              color: Color(0x68666363)),
-                                          color: Color(0xffffffff),
+                                              color: const Color(0x68666363)),
+                                          color: const Color(0xffffffff),
                                         ),
                                         child: const Text('1.000.000',
                                             style: TextStyle(fontSize: 20)),
                                       )
                                     ],
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 10,
                                   ),
                                   Row(
@@ -152,8 +152,8 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                           borderRadius:
                                               BorderRadius.circular(10),
                                           border: Border.all(
-                                              color: Color(0x68666363)),
-                                          color: Color(0xffffffff),
+                                              color: const Color(0x68666363)),
+                                          color: const Color(0xffffffff),
                                         ),
                                         child: const Text('2.500.000',
                                             style: TextStyle(fontSize: 20)),
@@ -166,15 +166,15 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                           borderRadius:
                                               BorderRadius.circular(10),
                                           border: Border.all(
-                                              color: Color(0x68666363)),
-                                          color: Color(0xffffffff),
+                                              color: const Color(0x68666363)),
+                                          color: const Color(0xffffffff),
                                         ),
                                         child: const Text('5.000.000',
                                             style: TextStyle(fontSize: 20)),
                                       )
                                     ],
                                   ),
-                                  SizedBox(height: 10),
+                                  const SizedBox(height: 10),
                                   TextField(
                                     controller: jumlahPinjamanController,
                                     onChanged: (value) {
@@ -183,7 +183,7 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                       currencyCubit
                                           .formatCurrency(parsedAmount);
                                     },
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                         hintText: "Rp",
                                         hintStyle: TextStyle(
                                             fontSize: 20,
@@ -198,13 +198,13 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                     builder: (context, state) {
                                       return Text(
                                         state,
-                                        style: TextStyle(fontSize: 18),
+                                        style: const TextStyle(fontSize: 18),
                                       );
                                     },
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 40),
+                              const SizedBox(height: 40),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -213,7 +213,7 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      Text("Durasi Pinjaman",
+                                      const Text("Durasi Pinjaman",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16)),
@@ -221,7 +221,7 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          SizedBox(height: 40),
+                                          const SizedBox(height: 40),
                                           Container(
                                             height: 30,
                                             width: 70,
@@ -230,12 +230,13 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                               borderRadius:
                                                   BorderRadius.circular(30),
                                               border: Border.all(
-                                                  color: Color(0x68666363)),
-                                              color: Color(0xffffffff),
+                                                  color:
+                                                      const Color(0x68666363)),
+                                              color: const Color(0xffffffff),
                                             ),
-                                            child: Text("minggu"),
+                                            child: const Text("minggu"),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 3,
                                           ),
                                           Container(
@@ -246,10 +247,11 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                               borderRadius:
                                                   BorderRadius.circular(30),
                                               border: Border.all(
-                                                  color: Color(0x68666363)),
-                                              color: Color(0xffffffff),
+                                                  color:
+                                                      const Color(0x68666363)),
+                                              color: const Color(0xffffffff),
                                             ),
-                                            child: Text("bulan"),
+                                            child: const Text("bulan"),
                                           ),
                                         ],
                                       ),
@@ -257,7 +259,7 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          SizedBox(height: 24),
+                                          const SizedBox(height: 24),
                                           SizedBox(
                                             width: 120,
                                             child: TextField(
@@ -268,7 +270,7 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                                     'durasiPinjaman', value);
                                               },
                                               textAlign: TextAlign.center,
-                                              decoration: InputDecoration(
+                                              decoration: const InputDecoration(
                                                   hintText: "XX",
                                                   hintStyle: TextStyle(
                                                       fontSize: 20,
@@ -290,11 +292,11 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      Text("Imbal Hasil",
+                                      const Text("Imbal Hasil",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16)),
-                                      Row(
+                                      const Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
@@ -306,7 +308,7 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          SizedBox(height: 24),
+                                          const SizedBox(height: 24),
                                           SizedBox(
                                             width: 120,
                                             child: TextField(
@@ -316,7 +318,7 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                                     'imbalHasil', value);
                                               },
                                               textAlign: TextAlign.center,
-                                              decoration: InputDecoration(
+                                              decoration: const InputDecoration(
                                                   hintText: "XX",
                                                   hintStyle: TextStyle(
                                                       fontSize: 20,
@@ -338,32 +340,32 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                               ),
                             ],
                           )),
-                      SizedBox(height: 24),
+                      const SizedBox(height: 24),
                       Container(
-                          margin: EdgeInsets.all(5),
-                          padding: EdgeInsets.symmetric(
+                          margin: const EdgeInsets.all(5),
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 25, vertical: 20),
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            border: Border.all(color: Color(0x68666363)),
-                            color: Color(0xffffffff),
+                            border: Border.all(color: const Color(0x68666363)),
+                            color: const Color(0xffffffff),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: 5),
-                              Text(
+                              const SizedBox(height: 5),
+                              const Text(
                                 "Summary",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 18),
                               ),
-                              SizedBox(height: 24),
+                              const SizedBox(height: 24),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Column(
+                                  const Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
@@ -378,7 +380,7 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                               fontWeight: FontWeight.bold)),
                                     ],
                                   ),
-                                  SizedBox(width: 20),
+                                  const SizedBox(width: 20),
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
@@ -411,7 +413,7 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                   )
                                 ],
                               ),
-                              SizedBox(height: 24),
+                              const SizedBox(height: 24),
                               Center(
                                 child: SizedBox(
                                   width: 150,
@@ -422,7 +424,7 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                         foregroundColor: warnaKeempat,
                                       ),
                                       onPressed: () {},
-                                      child: Text(
+                                      child: const Text(
                                         "Apply",
                                         style: TextStyle(color: Colors.black),
                                       )),
@@ -430,7 +432,7 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                               )
                             ],
                           )),
-                      SizedBox(height: 24)
+                      const SizedBox(height: 24)
                     ],
                   ),
                 ),

@@ -8,7 +8,7 @@ class ProfileUmkmScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         // leading: Icon(Icons.chevron_left),
-        title: Text("Profile Saya",
+        title: const Text("Profile Saya",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
         // centerTitle: true,
       ),
@@ -24,11 +24,11 @@ class ProfileUmkmScreen extends StatelessWidget {
                     child: CircleAvatar(
                         radius: 25,
                         backgroundColor: Colors.grey[350],
-                        child: Icon(Icons.person,
+                        child: const Icon(Icons.person,
                             size: 25, color: Colors.black45)),
                   ),
-                  SizedBox(width: 10),
-                  Expanded(
+                  const SizedBox(width: 10),
+                  const Expanded(
                     flex: 3,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,49 +46,47 @@ class ProfileUmkmScreen extends StatelessWidget {
                   // SizedBox(
                   //   width: 10,
                   // ),
-                  Expanded(
-                      child: Icon(Icons.edit),
+                  const Expanded(
+                    child: Icon(Icons.edit),
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Container(
-                margin: EdgeInsets.symmetric(vertical: 10),
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Color(0x68666363)),
-                  color: Color(0xffffffff),
+                  border: Border.all(color: const Color(0x68666363)),
+                  color: const Color(0xffffffff),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Container(
                   child: ListView(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     children: <Widget>[
                       ListTile(
-                        leading: Icon(
+                        leading: const Icon(
                           Icons.person,
                           color: warnaKetiga,
                         ),
-                        title: Text('Data UMKM'),
-                        trailing: Icon(Icons.chevron_right),
+                        title: const Text('Data UMKM'),
+                        trailing: const Icon(Icons.chevron_right),
                         onTap: () {},
                       ),
-                      
                       ListTile(
-                        leading: Icon(Icons.person, color: warnaKetiga),
-                        title: Text('Rekening Bank'),
-                        trailing: Icon(Icons.chevron_right),
+                        leading: const Icon(Icons.person, color: warnaKetiga),
+                        title: const Text('Rekening Bank'),
+                        trailing: const Icon(Icons.chevron_right),
                         onTap: () {},
                       ),
-                      
                       ListTile(
-                        leading: Icon(Icons.person, color: warnaKetiga),
-                        title: Text('Keamanan Akun'),
-                        trailing: Icon(Icons.chevron_right),
+                        leading: const Icon(Icons.person, color: warnaKetiga),
+                        title: const Text('Keamanan Akun'),
+                        trailing: const Icon(Icons.chevron_right),
                         onTap: () {},
                       ),
                     ],
@@ -96,47 +94,44 @@ class ProfileUmkmScreen extends StatelessWidget {
                 ),
               ),
               Container(
-                margin: EdgeInsets.symmetric(vertical: 10),
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Color(0x68666363)),
-                  color: Color(0xffffffff),
+                  border: Border.all(color: const Color(0x68666363)),
+                  color: const Color(0xffffffff),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Container(
                   child: ListView(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     children: <Widget>[
                       ListTile(
-                        leading: Icon(
+                        leading: const Icon(
                           Icons.person,
                           color: warnaKetiga,
                         ),
-                        title: Text('Pusat Bantuan'),
-                        trailing: Icon(Icons.chevron_right),
+                        title: const Text('Pusat Bantuan'),
+                        trailing: const Icon(Icons.chevron_right),
                         onTap: () {},
                       ),
-                      
                       ListTile(
-                        leading: Icon(Icons.person, color: warnaKetiga),
-                        title: Text('Syarat dan Ketentuan'),
-                        trailing: Icon(Icons.chevron_right),
+                        leading: const Icon(Icons.person, color: warnaKetiga),
+                        title: const Text('Syarat dan Ketentuan'),
+                        trailing: const Icon(Icons.chevron_right),
                         onTap: () {},
                       ),
-                      
                       ListTile(
-                        leading: Icon(Icons.person, color: warnaKetiga),
-                        title: Text('Kebijakan Privasi'),
-                        trailing: Icon(Icons.chevron_right),
+                        leading: const Icon(Icons.person, color: warnaKetiga),
+                        title: const Text('Kebijakan Privasi'),
+                        trailing: const Icon(Icons.chevron_right),
                         onTap: () {},
                       ),
-                      
                       ListTile(
-                        leading: Icon(Icons.person, color: warnaKetiga),
-                        title: Text('Logout'),
-                        trailing: Icon(Icons.chevron_right),
+                        leading: const Icon(Icons.person, color: warnaKetiga),
+                        title: const Text('Logout'),
+                        trailing: const Icon(Icons.chevron_right),
                         onTap: () {},
                       ),
                     ],
