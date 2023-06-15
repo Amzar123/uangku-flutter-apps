@@ -152,6 +152,14 @@ class _RegisterMemberState extends State<RegisterMember> {
         }
       },
       child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Container(

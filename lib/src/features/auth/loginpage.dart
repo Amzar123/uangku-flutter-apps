@@ -185,7 +185,7 @@ class _login_pageState extends State<login_page> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (_) => RegisterPage1(title: "title")));
+                                builder: (_) => RegisterPage2(title: "title")));
                       },
                       child: Text(
                         ' Daftar sekarang',
