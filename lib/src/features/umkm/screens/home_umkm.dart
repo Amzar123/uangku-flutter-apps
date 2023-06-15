@@ -7,7 +7,7 @@ class HomeUMKM extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Overview",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
@@ -15,30 +15,31 @@ class HomeUMKM extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
-              Text(
+              const Text(
                 "Pinjaman Saya",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               Container(
-                  margin: EdgeInsets.all(5),
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  margin: const EdgeInsets.all(5),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Color(0x68666363)),
-                    color: Color(0xffffffff),
+                    border: Border.all(color: const Color(0x68666363)),
+                    color: const Color(0xffffffff),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
+                      const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("Pinjaman 1",
@@ -47,17 +48,17 @@ class HomeUMKM extends StatelessWidget {
                           Text("Rp.XX.XXX.XXX"),
                         ],
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
                       Column(
                         children: [
                           Container(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 5),
                             decoration: BoxDecoration(
                               color: primaryColor,
                               borderRadius: BorderRadius.circular(15),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text(
                                 'Dalam Proses',
                               ),
@@ -67,25 +68,26 @@ class HomeUMKM extends StatelessWidget {
                       )
                     ],
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
-              Text(
+              const Text(
                 "Pengembalian Aktif",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               Container(
-                  margin: EdgeInsets.all(5),
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  margin: const EdgeInsets.all(5),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Color(0x68666363)),
-                    color: Color(0xffffffff),
+                    border: Border.all(color: const Color(0x68666363)),
+                    color: const Color(0xffffffff),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Column(
                     children: [
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Column(
@@ -99,7 +101,7 @@ class HomeUMKM extends StatelessWidget {
                           )
                         ],
                       ),
-                      SizedBox(height: 24),
+                      const SizedBox(height: 24),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -110,8 +112,8 @@ class HomeUMKM extends StatelessWidget {
                           _stepCircle(2, Colors.grey.shade400),
                         ],
                       ),
-                      SizedBox(height: 24),
-                      Row(
+                      const SizedBox(height: 24),
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
@@ -135,37 +137,38 @@ class HomeUMKM extends StatelessWidget {
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 24,
                       ),
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
                             onPressed: () {},
-                            child: Text("Ingatkan Saya"),
+                            child: const Text("Ingatkan Saya"),
                             style: ElevatedButton.styleFrom(
                                 foregroundColor: Colors.black,
                                 backgroundColor: primaryColor)),
                       )
                     ],
                   )),
-              SizedBox(height: 24),
-              Text(
+              const SizedBox(height: 24),
+              const Text(
                 "Riwayat Pengembalian",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               Container(
-                  margin: EdgeInsets.all(5),
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  margin: const EdgeInsets.all(5),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Color(0x68666363)),
-                    color: Color(0xffffffff),
+                    border: Border.all(color: const Color(0x68666363)),
+                    color: const Color(0xffffffff),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Column(
                     children: [
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Icon(Icons.north_east),
@@ -190,8 +193,8 @@ class HomeUMKM extends StatelessWidget {
                           )
                         ],
                       ),
-                      Divider(color: Colors.grey, height: 24),
-                      Row(
+                      const Divider(color: Colors.grey, height: 24),
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Icon(Icons.south_west),
@@ -216,7 +219,7 @@ class HomeUMKM extends StatelessWidget {
                           )
                         ],
                       ),
-                      Divider(color: Colors.grey, height: 24),
+                      const Divider(color: Colors.grey, height: 24),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -225,9 +228,10 @@ class HomeUMKM extends StatelessWidget {
                             children: [
                               GestureDetector(
                                 onTap: () {},
-                                child: Text("Lihat Semua",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold, color: warnaKetiga)),
+                                child: const Text("Lihat Semua",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: warnaKetiga)),
                               )
                             ],
                           ),
@@ -254,7 +258,7 @@ Widget _stepCircle(int stepIndex, Color color) {
     child: Center(
       child: Text(
         '${stepIndex + 1}',
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
         ),
