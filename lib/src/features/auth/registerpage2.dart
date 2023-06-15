@@ -1,39 +1,51 @@
 import 'package:flutter/material.dart';
-import 'registerinvestorpage.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'registermember.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+// Event untuk mengarahkan navigasi ke halaman RegisterMember
+class NavigateToRegisterMemberEvent extends Object {}
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+// Bloc untuk mengelola navigasi
+class NavigationBloc extends Bloc<Object, Object> {
+  NavigationBloc() : super(Object());
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Project',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const registerpage2(title: 'MyProject'),
-    );
+  Stream<Object> mapEventToState(Object event) async* {
+    if (event is NavigateToRegisterMemberEvent) {
+      yield* navigateToRegisterMember();
+    }
+  }
+
+  Stream<Object> navigateToRegisterMember() async* {
+    yield RegisterMember(title: "title");
   }
 }
 
-class registerpage2 extends StatefulWidget {
-  const registerpage2({super.key, required this.title});
+class RegisterPage2 extends StatefulWidget {
+  const RegisterPage2({Key? key, required this.title}) : super(key: key);
   final String title;
+
   @override
-  State<registerpage2> createState() => _registerpage2State();
+  State<RegisterPage2> createState() => _RegisterPage2State();
 }
 
 enum UserType { Investor, Member }
 
-class _registerpage2State extends State<registerpage2> {
-  // Void and Function
+class _RegisterPage2State extends State<RegisterPage2> {
   UserType? jenisuser;
+  late NavigationBloc _navigationBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _navigationBloc = NavigationBloc();
+  }
+
+  @override
+  void dispose() {
+    _navigationBloc.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +53,6 @@ class _registerpage2State extends State<registerpage2> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            // decoration: BoxDecoration(
-            //   border: Border.all(color: const Color.fromARGB(255, 255, 0, 0)),
-            // ),
             width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -51,29 +60,16 @@ class _registerpage2State extends State<registerpage2> {
               children: [
                 Container(
                   width: double.infinity,
-                  //Container pertama (logo dan appsname)
-                  // decoration: BoxDecoration(
-                  //   border:
-                  //       Border.all(color: const Color.fromARGB(255, 255, 0, 0)),
-                  // ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                         margin: EdgeInsets.only(left: 10),
-                        // decoration: BoxDecoration(
-                        //   border: Border.all(
-                        //       color: const Color.fromARGB(255, 255, 0, 0)),
-                        // ),
                         height: 50,
                         child: Text('gambar'),
                       ),
                       Container(
                         margin: EdgeInsets.only(bottom: 15, left: 10),
-                        // decoration: BoxDecoration(
-                        //   border: Border.all(
-                        //       color: const Color.fromARGB(255, 255, 0, 0)),
-                        // ),
                         child: const Text(
                           'Mari Buat Akun Anda',
                           textAlign: TextAlign.start,
@@ -91,11 +87,6 @@ class _registerpage2State extends State<registerpage2> {
                 Container(
                   width: double.infinity,
                   margin: EdgeInsets.only(bottom: 12, left: 10),
-                  //container2 radiobutton
-                  // decoration: BoxDecoration(
-                  //   border:
-                  //       Border.all(color: const Color.fromARGB(255, 255, 0, 0)),
-                  // ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -117,20 +108,15 @@ class _registerpage2State extends State<registerpage2> {
                 ),
                 Container(
                   margin: EdgeInsets.only(bottom: 12, left: 10, right: 10),
-                  // decoration: BoxDecoration(
-                  //   border:
-                  //       Border.all(color: const Color.fromARGB(255, 255, 0, 0)),
-                  // ),
                   child: Column(
                     children: [
                       Container(
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: Colors.grey, // Set the border color
-                            width: 1.0, // Set the border width
+                            color: Colors.grey,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(
-                              50), // Set the border radius
+                          borderRadius: BorderRadius.circular(50),
                         ),
                         child: RadioListTile<UserType>(
                           title: const Text('Investor'),
@@ -147,11 +133,10 @@ class _registerpage2State extends State<registerpage2> {
                       Container(
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: Colors.grey, // Set the border color
-                            width: 1.0, // Set the border width
+                            color: Colors.grey,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(
-                              50), // Set the border radius
+                          borderRadius: BorderRadius.circular(50),
                         ),
                         child: RadioListTile<UserType>(
                           title: const Text('Member'),
@@ -172,24 +157,12 @@ class _registerpage2State extends State<registerpage2> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      //container 3 button
-                      // decoration: BoxDecoration(
-                      //        border: Border.all(color: Color.fromARGB(255, 0, 255, 21)),
-                      //     ),
-                      //margin: EdgeInsets.only(bottom: 30, top: 20),
                       margin: EdgeInsets.only(top: 5),
-                      // decoration: BoxDecoration(
-                      //   border:
-                      //       Border.all(color: const Color.fromARGB(255, 255, 0, 0)),
-                      // ),
                       height: 30,
                       width: 250,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => registermember(title: "title")));
+                          _navigationBloc.add(NavigateToRegisterMemberEvent());
                         },
                         child: Text(
                           "Lanjutkan",
@@ -214,7 +187,6 @@ class _registerpage2State extends State<registerpage2> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          //gambar
                           child: Text('Gambar'),
                         ),
                         Container(
@@ -231,13 +203,33 @@ class _registerpage2State extends State<registerpage2> {
                         ),
                       ],
                     ),
-                    // Your container content here
                   ),
                 ),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Project',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: BlocProvider(
+        create: (context) => NavigationBloc(),
+        child: RegisterPage2(title: 'MyProject'),
       ),
     );
   }

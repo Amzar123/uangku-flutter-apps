@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                   Container(
                                     margin:
-                                        EdgeInsets.only(bottom: 30, top: 20),
+                                    EdgeInsets.only(bottom: 30, top: 20),
                                     child: const Text(
                                       'TemanInvest',
                                       textAlign: TextAlign.center,

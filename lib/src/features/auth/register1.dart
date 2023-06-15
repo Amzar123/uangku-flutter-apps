@@ -1,35 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'registerpage2.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+// Event untuk mengarahkan navigasi ke halaman RegisterPage2
+class NavigateToRegisterPage2Event extends Object {}
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+// Bloc untuk mengelola navigasi
+class NavigationBloc extends Bloc<Object, Object> {
+  NavigationBloc() : super(Object());
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Project',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const registerpage1(title: 'MyProject'),
-    );
+  Stream<Object> mapEventToState(Object event) async* {
+    if (event is NavigateToRegisterPage2Event) {
+      yield* navigateToRegisterPage2();
+    }
+  }
+
+  Stream<Object> navigateToRegisterPage2() async* {
+    yield RegisterPage2(title: "title");
   }
 }
 
-class registerpage1 extends StatefulWidget {
-  const registerpage1({super.key, required this.title});
+class RegisterPage1 extends StatefulWidget {
+  const RegisterPage1({Key? key, required this.title}) : super(key: key);
   final String title;
+
   @override
-  State<registerpage1> createState() => _registerpage1State();
+  State<RegisterPage1> createState() => _RegisterPage1State();
 }
 
-class _registerpage1State extends State<registerpage1> {
-  // Void and Function
+class _RegisterPage1State extends State<RegisterPage1> {
+  late NavigationBloc _navigationBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _navigationBloc = NavigationBloc();
+  }
+
+  @override
+  void dispose() {
+    _navigationBloc.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,20 +50,11 @@ class _registerpage1State extends State<registerpage1> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            //width: double.infinity, // 100% max width parent
-            // decoration: BoxDecoration(
-            //  border: Border.all(color: Color.fromARGB(255, 255, 0, 0)),
-            // ),
             child: Column(
-              // mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container( // c1 atas
+                Container(
                   width: double.infinity,
                   margin: EdgeInsets.only(bottom: 12, left: 10, right: 10),
-                  // decoration: BoxDecoration(
-                  //   border: Border.all(color: Color.fromARGB(255, 255, 0, 0)),
-                  // ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,8 +77,7 @@ class _registerpage1State extends State<registerpage1> {
                     ],
                   ),
                 ),
-
-                Container( //c2 form
+                Container(
                   margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -92,9 +95,10 @@ class _registerpage1State extends State<registerpage1> {
                             contentPadding:
                             EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "Nama Lengkap",
-                            prefixIcon: Icon(Icons.lock_outlined, color: Colors.white),
+                            prefixIcon:
+                            Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50), // Set the border radius to make it rounded
+                              borderRadius: BorderRadius.circular(50),
                             ),
                           ),
                         ),
@@ -204,24 +208,12 @@ class _registerpage1State extends State<registerpage1> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      //container 3 button
-                      // decoration: BoxDecoration(
-                      //        border: Border.all(color: Color.fromARGB(255, 0, 255, 21)),
-                      //     ),
-                      //margin: EdgeInsets.only(bottom: 30, top: 20),
                       margin: EdgeInsets.only(top: 5),
-                      // decoration: BoxDecoration(
-                      //   border:
-                      //       Border.all(color: const Color.fromARGB(255, 255, 0, 0)),
-                      // ),
                       height: 40,
                       width: 250,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => registerpage2(title: "title")));
+                          _navigationBloc.add(NavigateToRegisterPage2Event());
                         },
                         child: Text(
                           "Lanjutkan",
@@ -238,8 +230,7 @@ class _registerpage1State extends State<registerpage1> {
                     ),
                   ],
                 ),
-
-                Container( //c4logo
+                Container(
                   margin: EdgeInsets.only(top: 318),
                   child: Container(
                     child: Row(
@@ -247,7 +238,6 @@ class _registerpage1State extends State<registerpage1> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          //gambar
                           child: Text('Gambar'),
                         ),
                         Container(
@@ -264,7 +254,6 @@ class _registerpage1State extends State<registerpage1> {
                         ),
                       ],
                     ),
-                    // Your container content here
                   ),
                 ),
               ],
@@ -272,6 +261,24 @@ class _registerpage1State extends State<registerpage1> {
           ),
         ),
       ),
+    );
+  }
+}
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Project',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: RegisterPage1(title: 'MyProject'),
     );
   }
 }
