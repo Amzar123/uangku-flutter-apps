@@ -1,8 +1,9 @@
 import 'package:apps/src/constants.dart';
 import 'package:apps/src/features/umkm/screens/home_umkm.dart';
 import 'package:apps/src/features/umkm/screens/list_investor.dart';
-import 'package:apps/src/features/umkm/screens/profile.dart';
 import 'package:flutter/material.dart';
+
+import 'features/investor/screens/profile_investor.dart';
 
 
 class HomeUmkm extends StatefulWidget {
@@ -24,7 +25,7 @@ class _HomeUmkmState extends State<HomeUmkm> {
   static const List<Widget> _pages = <Widget>[
     HomeUMKM(),
     ListInvestor(),
-    ProfileUmkmScreen(),
+    ProfileInvestorScreen(),
   ];
 
   @override

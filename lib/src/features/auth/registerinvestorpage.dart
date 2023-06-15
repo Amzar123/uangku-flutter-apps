@@ -1,15 +1,49 @@
-import 'package:apps/src/temp.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:apps/src/temp.dart';
 
-class registerinvestor extends StatefulWidget {
-  const registerinvestor({super.key, required this.title});
-  final String title;
+
+// Event untuk mengarahkan navigasi ke halaman TempScreen
+class NavigateToTempScreenEvent extends Object {}
+
+// Bloc untuk mengelola navigasi
+class NavigationBloc extends Bloc<Object, Object> {
+  NavigationBloc() : super(Object());
+
   @override
-  State<registerinvestor> createState() => _registerinvestorState();
+  Stream<Object> mapEventToState(Object event) async* {
+    if (event is NavigateToTempScreenEvent) {
+      yield* navigateToTempScreen();
+    }
+  }
+
+  Stream<Object> navigateToTempScreen() async* {
+    yield const TempScreen();
+  }
 }
 
-class _registerinvestorState extends State<registerinvestor> {
-  // Void and Function
+class RegisterInvestor extends StatefulWidget {
+  const RegisterInvestor({Key? key, required this.title}) : super(key: key);
+  final String title;
+
+  @override
+  State<RegisterInvestor> createState() => _RegisterInvestorState();
+}
+
+class _RegisterInvestorState extends State<RegisterInvestor> {
+  late NavigationBloc _navigationBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _navigationBloc = NavigationBloc();
+  }
+
+  @override
+  void dispose() {
+    _navigationBloc.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,111 +51,88 @@ class _registerinvestorState extends State<registerinvestor> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            //width: double.infinity, // 100% max width parent
-            // decoration: BoxDecoration(
-            //  border: Border.all(color: Color.fromARGB(255, 255, 0, 0)),
-            // ),
+            // width: double.infinity, // 100% max width parent
             child: Column(
-              // mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  // c1 atas
                   width: double.infinity,
-                  margin: EdgeInsets.only(bottom: 12, left: 10, right: 10),
-                  // decoration: BoxDecoration(
-                  //   border: Border.all(color: Color.fromARGB(255, 255, 0, 0)),
-                  // ),
+                  margin: const EdgeInsets.only(bottom: 12, left: 10, right: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        child: const Text('Gambar'),
-                      ),
-                      Container(
-                        child: const Text(
-                          'Mari Buat Akun Anda',
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            color: Color(0xFF002B5B),
-                            fontSize: 30,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'Inter',
-                          ),
+                      const Text('Gambar'),
+                      const Text(
+                        'Mari Buat Akun Anda',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          color: Color(0xFF002B5B),
+                          fontSize: 30,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Inter',
                         ),
                       ),
                     ],
                   ),
                 ),
                 Container(
-                  //c2 form
-                  margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+                  margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Text("Pekerjaan"),
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
                           decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.symmetric(vertical: 16.0),
+                            contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "Pekerjaan",
-                            prefixIcon:
-                                Icon(Icons.lock_outlined, color: Colors.white),
+                            prefixIcon: Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                  50), // Set the border radius to make it rounded
+                              borderRadius: BorderRadius.circular(50), // Set the border radius to make it rounded
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(height: 5),
-                      Padding(
+                      const SizedBox(height: 5),
+                      const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Text("Perusahaan"),
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
                           decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.symmetric(vertical: 16.0),
+                            contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "Perusahaan",
-                            prefixIcon:
-                                Icon(Icons.lock_outlined, color: Colors.white),
+                            prefixIcon: Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                  50), // Set the border radius to make it rounded
+                              borderRadius: BorderRadius.circular(50), // Set the border radius to make it rounded
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(height: 5),
-                      Padding(
+                      const SizedBox(height: 5),
+                      const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Text("Penghasilan"),
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
                           decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.symmetric(vertical: 16.0),
+                            contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "Penghasilan",
-                            prefixIcon:
-                                Icon(Icons.lock_outlined, color: Colors.white),
+                            prefixIcon: Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                  50), // Set the border radius to make it rounded
+                              borderRadius: BorderRadius.circular(50), // Set the border radius to make it rounded
                             ),
                           ),
                         ),
@@ -134,25 +145,12 @@ class _registerinvestorState extends State<registerinvestor> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      //container 3 button
-                      // decoration: BoxDecoration(
-                      //        border: Border.all(color: Color.fromARGB(255, 0, 255, 21)),
-                      //     ),
-                      //margin: EdgeInsets.only(bottom: 30, top: 20),
-                      margin: EdgeInsets.only(top: 5),
-                      // decoration: BoxDecoration(
-                      //   border:
-                      //       Border.all(color: const Color.fromARGB(255, 255, 0, 0)),
-                      // ),
+                      margin: const EdgeInsets.only(top: 5),
                       height: 30,
                       width: 250,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const TempScreen(),
-                            ),
-                          );
+                          _navigationBloc.add(NavigateToTempScreenEvent());
                         },
                         child: Text(
                           "Buat Akun",
@@ -170,15 +168,13 @@ class _registerinvestorState extends State<registerinvestor> {
                   ],
                 ),
                 Container(
-                  //c4logo
-                  margin: EdgeInsets.only(top: 490),
+                  margin: const EdgeInsets.only(top: 490),
                   child: Container(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          //gambar
                           child: Text('Gambar'),
                         ),
                         Container(
@@ -195,13 +191,33 @@ class _registerinvestorState extends State<registerinvestor> {
                         ),
                       ],
                     ),
-                    // Your container content here
                   ),
                 ),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Project',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: BlocProvider(
+        create: (context) => NavigationBloc(),
+        child: RegisterInvestor(title: 'MyProject'),
       ),
     );
   }
