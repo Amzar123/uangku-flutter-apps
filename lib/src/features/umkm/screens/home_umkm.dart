@@ -1,5 +1,7 @@
+import 'package:apps/main.dart';
 import 'package:apps/src/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeUMKM extends StatelessWidget {
   const HomeUMKM({super.key});
@@ -26,48 +28,60 @@ class HomeUMKM extends StatelessWidget {
                 "Pinjaman Saya",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
-              Container(
-                  margin: const EdgeInsets.all(5),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: const Color(0x68666363)),
-                    color: const Color(0xffffffff),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Pinjaman 1",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16)),
-                          Text("Rp.XX.XXX.XXX"),
-                        ],
-                      ),
-                      const SizedBox(width: 20),
-                      Column(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 5),
-                            decoration: BoxDecoration(
-                              color: primaryColor,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                'Dalam Proses',
-                              ),
-                            ),
+              BlocBuilder<InvestGetApplicationCubit,
+                      List<InvestApplicationModel>>(
+                  builder: (context, listInvestApplication) {
+                context.read<InvestGetApplicationCubit>().fetchData();
+                return ListView.builder(
+                    itemCount: listInvestApplication.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      var investApplication = listInvestApplication[index];
+                      return Container(
+                          margin: const EdgeInsets.all(5),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 20),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: const Color(0x68666363)),
+                            color: const Color(0xffffffff),
+                            borderRadius: BorderRadius.circular(8),
                           ),
-                        ],
-                      )
-                    ],
-                  )),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Pinjaman 1",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16)),
+                                  Text("Rp.XX.XXX.XXX"),
+                                ],
+                              ),
+                              const SizedBox(width: 20),
+                              Column(
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 5),
+                                    decoration: BoxDecoration(
+                                      color: primaryColor,
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        'Dalam Proses',
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ));
+                    });
+              }),
               const SizedBox(
                 height: 24,
               ),

@@ -50,12 +50,14 @@ class InvestApplicationModel {
   String investorId;
   String businessId;
   String amount;
+  String status;
   String duration;
   String deviden;
   InvestApplicationModel(
       {required this.investorId,
       required this.businessId,
       required this.amount,
+      required this.status,
       required this.duration,
       required this.deviden}); //constructor
 }
@@ -66,6 +68,7 @@ class InvestApplicationCubit extends Cubit<InvestApplicationModel> {
       : super(InvestApplicationModel(
             investorId: "",
             businessId: "",
+            status: "",
             amount: "0",
             duration: "0",
             deviden: "0"));
@@ -90,6 +93,46 @@ class InvestApplicationCubit extends Cubit<InvestApplicationModel> {
   }
 }
 
+class InvestGetApplicationCubit extends Cubit<List<InvestApplicationModel>> {
+  String url =
+      "http://localhost:3000/v1/invest-applications?businessId=648db840705c2c19ada9c1c7";
+  InvestGetApplicationCubit() : super([]);
+
+  List<InvestApplicationModel> listInvestApplication =
+      <InvestApplicationModel>[];
+  //map dari json ke atribut
+  void setFromJson(Map<String, dynamic> json) {
+    var data = json["data"]['results'];
+    for (var val in data) {
+      String investorId = val['investorId'];
+      String businessId = val['businessId'];
+      String status = val['status'];
+      int amount = val['amount'];
+      int duration = val['duration'];
+      int deviden = val['deviden'];
+
+      listInvestApplication.add(InvestApplicationModel(
+        investorId: investorId,
+        businessId: businessId,
+        status: status,
+        amount: amount.toString(),
+        duration: duration.toString(),
+        deviden: deviden.toString(),
+      ));
+    }
+    emit(listInvestApplication);
+  }
+
+  void fetchData() async {
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      setFromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Gagal load');
+    }
+  }
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   // This widget is the root of your application.
@@ -99,7 +142,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<UMKMCubit>(create: (_) => UMKMCubit()),
         BlocProvider<InvestApplicationCubit>(
-            create: (_) => InvestApplicationCubit())
+            create: (_) => InvestApplicationCubit()),
+        BlocProvider<InvestGetApplicationCubit>(
+            create: (_) => InvestGetApplicationCubit()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
