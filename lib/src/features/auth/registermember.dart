@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'register1.dart';
 
-
 class RegisterMember extends StatefulWidget {
-  const RegisterMember({Key? key, required this.title, required this.registrationData}) : super(key: key);
+  const RegisterMember(
+      {Key? key, required this.title, required this.registrationData})
+      : super(key: key);
   final String title;
   final RegistrationData? registrationData;
 
@@ -19,6 +20,8 @@ class RegistrationData {
   final String email;
   final String password;
   final String confirmPassword;
+  String? pekerjaan;
+  String? jenisUsaha;
 
   RegistrationData({
     required this.fullName,
@@ -26,11 +29,14 @@ class RegistrationData {
     required this.email,
     required this.password,
     required this.confirmPassword,
+    required this.pekerjaan,
+    required this.jenisUsaha,
   });
 }
 
 class _RegisterMemberState extends State<RegisterMember> {
   JnsUsaha? jenisUsaha;
+  final TextEditingController pekerjaanController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +78,7 @@ class _RegisterMemberState extends State<RegisterMember> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: TextField(
+                  controller: pekerjaanController,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                     labelText: "Pekerjaan",
@@ -157,6 +164,10 @@ class _RegisterMemberState extends State<RegisterMember> {
               SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
+                  widget.registrationData?.jenisUsaha = jenisUsaha.toString();
+                  widget.registrationData?.pekerjaan = pekerjaanController.text;
+                  print(widget.registrationData?.pekerjaan);
+                  print(widget.registrationData?.jenisUsaha);
                   showDialog(
                     context: context,
                     barrierDismissible: false,
@@ -190,13 +201,15 @@ class _RegisterMemberState extends State<RegisterMember> {
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Icon(Icons.check_circle, color: Colors.green, size: 48),
+                                Icon(Icons.check_circle,
+                                    color: Colors.green, size: 48),
                                 SizedBox(height: 16),
                                 Text('Akun berhasil dibuat!'),
                                 SizedBox(height: 16),
                                 ElevatedButton(
                                   onPressed: () {
-                                    Navigator.of(context).pop(); // Close the success dialog
+                                    Navigator.of(context)
+                                        .pop(); // Close the success dialog
                                   },
                                   child: Text('OK'),
                                 ),
@@ -242,7 +255,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: RegisterMember(title: 'Register Member', registrationData: registrationData),
+      home: RegisterMember(
+          title: 'Register Member', registrationData: registrationData),
     );
   }
 }

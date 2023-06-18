@@ -43,6 +43,9 @@ class _registerpage1State extends State<registerpage1> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
+  final TextEditingController pekerjaanController = TextEditingController();
+  final TextEditingController perusahaanController = TextEditingController();
+  final TextEditingController penghasilanController = TextEditingController();
 
   void navigateToRegisterMember() {
     final registrationData = RegistrationData(
@@ -51,6 +54,8 @@ class _registerpage1State extends State<registerpage1> {
       email: emailController.text,
       password: passwordController.text,
       confirmPassword: confirmPasswordController.text,
+      pekerjaan: pekerjaanController.text,
+      jenisUsaha: null,
     );
     final registrationData2 = RegistrationDataInvestor(
       fullName: fullNameController.text,
@@ -58,6 +63,9 @@ class _registerpage1State extends State<registerpage1> {
       email: emailController.text,
       password: passwordController.text,
       confirmPassword: confirmPasswordController.text,
+      pekerjaan: pekerjaanController.text,
+      perusahaan: perusahaanController.text,
+      penghasilan: penghasilanController.text,
     );
     if (widget.userType.toString() == 'UserType.Member') {
       Navigator.push(

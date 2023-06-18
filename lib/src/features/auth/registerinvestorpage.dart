@@ -9,6 +9,9 @@ class RegistrationDataInvestor {
   final String email;
   final String password;
   final String confirmPassword;
+  String pekerjaan;
+  String perusahaan;
+  String penghasilan;
 
   RegistrationDataInvestor({
     required this.fullName,
@@ -16,6 +19,9 @@ class RegistrationDataInvestor {
     required this.email,
     required this.password,
     required this.confirmPassword,
+    required this.pekerjaan,
+    required this.perusahaan,
+    required this.penghasilan,
   });
 }
 
@@ -31,6 +37,9 @@ class RegisterInvestor extends StatefulWidget {
 }
 
 class _RegisterInvestorState extends State<RegisterInvestor> {
+  final TextEditingController pekerjaanController = TextEditingController();
+  final TextEditingController perusahaanController = TextEditingController();
+  final TextEditingController penghasilanController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     print('Full Name: ${widget.registrationData?.fullName}');
@@ -38,6 +47,7 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
     print('Email: ${widget.registrationData?.email}');
     print('Password: ${widget.registrationData?.password}');
     print('Confirm Password: ${widget.registrationData?.confirmPassword}');
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -56,7 +66,7 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                   width: double.infinity,
                   margin:
                       const EdgeInsets.only(bottom: 12, left: 10, right: 10),
-                  child: const Column(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -88,6 +98,7 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
+                          controller: pekerjaanController,
                           decoration: InputDecoration(
                             contentPadding:
                                 const EdgeInsets.symmetric(vertical: 16.0),
@@ -109,6 +120,7 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
+                          controller: perusahaanController,
                           decoration: InputDecoration(
                             contentPadding:
                                 const EdgeInsets.symmetric(vertical: 16.0),
@@ -130,6 +142,7 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
+                          controller: penghasilanController,
                           decoration: InputDecoration(
                             contentPadding:
                                 const EdgeInsets.symmetric(vertical: 16.0),
@@ -155,20 +168,82 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                       width: 250,
                       child: ElevatedButton(
                         onPressed: () {
-                          context
-                              .read<RegisterInvestorCubit>()
-                              .registration(context, widget.registrationData);
+                          widget.registrationData?.pekerjaan =
+                              pekerjaanController.text;
+                          widget.registrationData?.perusahaan =
+                              perusahaanController.text;
+                          widget.registrationData?.penghasilan =
+                              penghasilanController.text;
+                          print(
+                              'Pekerjaan:${widget.registrationData?.pekerjaan}');
+                          print(
+                              'Perusahaan:${widget.registrationData?.perusahaan}');
+                          print(
+                              'Penghasilan:${widget.registrationData?.penghasilan}');
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (BuildContext context) {
+                              return Dialog(
+                                child: Container(
+                                  padding: EdgeInsets.all(16),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      CircularProgressIndicator(),
+                                      SizedBox(height: 16),
+                                      Text('Membuat akun...'),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+
+                          Future.delayed(Duration(seconds: 2), () {
+                            Navigator.of(context)
+                                .pop(); // Close the loading dialog
+
+                            showDialog(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (BuildContext context) {
+                                return Dialog(
+                                  child: Container(
+                                    padding: EdgeInsets.all(16),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(Icons.check_circle,
+                                            color: Colors.green, size: 48),
+                                        SizedBox(height: 16),
+                                        Text('Akun berhasil dibuat!'),
+                                        SizedBox(height: 16),
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.of(context)
+                                                .pop(); // Close the success dialog
+                                          },
+                                          child: Text('OK'),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          });
                         },
+                        child: Text(
+                          'Buat Akun',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
                         style: ElevatedButton.styleFrom(
                           elevation: 0.0,
                           primary: Color(0xFF57C5B6),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50),
                           ),
-                        ),
-                        child: const Text(
-                          "Buat Akun",
-                          style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                       ),
                     ),
