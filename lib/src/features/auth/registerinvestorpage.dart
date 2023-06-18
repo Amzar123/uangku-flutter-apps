@@ -6,6 +6,9 @@ class RegistrationData2 {
   final String email;
   final String password;
   final String confirmPassword;
+  String pekerjaan;
+  String perusahaan;
+  String penghasilan;
 
   RegistrationData2({
     required this.fullName,
@@ -13,11 +16,16 @@ class RegistrationData2 {
     required this.email,
     required this.password,
     required this.confirmPassword,
+    required this.pekerjaan,
+    required this.perusahaan,
+    required this.penghasilan,
   });
 }
 
 class RegisterInvestor extends StatefulWidget {
-  const RegisterInvestor({Key? key, required this.title, required this.registrationData}) : super(key: key);
+  const RegisterInvestor(
+      {Key? key, required this.title, required this.registrationData})
+      : super(key: key);
   final String title;
   final RegistrationData2? registrationData;
 
@@ -26,6 +34,9 @@ class RegisterInvestor extends StatefulWidget {
 }
 
 class _RegisterInvestorState extends State<RegisterInvestor> {
+  final TextEditingController pekerjaanController = TextEditingController();
+  final TextEditingController perusahaanController = TextEditingController();
+  final TextEditingController penghasilanController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     print('Full Name: ${widget.registrationData?.fullName}');
@@ -33,6 +44,7 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
     print('Email: ${widget.registrationData?.email}');
     print('Password: ${widget.registrationData?.password}');
     print('Confirm Password: ${widget.registrationData?.confirmPassword}');
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -49,7 +61,8 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
               children: [
                 Container(
                   width: double.infinity,
-                  margin: const EdgeInsets.only(bottom: 12, left: 10, right: 10),
+                  margin:
+                      const EdgeInsets.only(bottom: 12, left: 10, right: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +81,8 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+                  margin:
+                      const EdgeInsets.only(bottom: 10, left: 10, right: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,10 +95,13 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
+                          controller: pekerjaanController,
                           decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
+                            contentPadding:
+                                const EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "Pekerjaan",
-                            prefixIcon: Icon(Icons.lock_outlined, color: Colors.white),
+                            prefixIcon:
+                                Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
                             ),
@@ -100,10 +117,13 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
+                          controller: perusahaanController,
                           decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
+                            contentPadding:
+                                const EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "Perusahaan",
-                            prefixIcon: Icon(Icons.lock_outlined, color: Colors.white),
+                            prefixIcon:
+                                Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
                             ),
@@ -119,10 +139,13 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
+                          controller: penghasilanController,
                           decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
+                            contentPadding:
+                                const EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "Penghasilan",
-                            prefixIcon: Icon(Icons.lock_outlined, color: Colors.white),
+                            prefixIcon:
+                                Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
                             ),
@@ -142,15 +165,74 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                       width: 250,
                       child: ElevatedButton(
                         onPressed: () {
-                          // Navigator.push(
-                          //   //context,
-                          //   //MaterialPageRoute(
-                          //     //builder: (context) => TempScreen(),
-                          //   //),
-                          // );
+                          widget.registrationData?.pekerjaan =
+                              pekerjaanController.text;
+                          widget.registrationData?.perusahaan =
+                              perusahaanController.text;
+                          widget.registrationData?.penghasilan =
+                              penghasilanController.text;
+                          print(
+                              'Pekerjaan:${widget.registrationData?.pekerjaan}');
+                          print(
+                              'Perusahaan:${widget.registrationData?.perusahaan}');
+                          print(
+                              'Penghasilan:${widget.registrationData?.penghasilan}');
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (BuildContext context) {
+                              return Dialog(
+                                child: Container(
+                                  padding: EdgeInsets.all(16),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      CircularProgressIndicator(),
+                                      SizedBox(height: 16),
+                                      Text('Membuat akun...'),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+
+                          Future.delayed(Duration(seconds: 2), () {
+                            Navigator.of(context)
+                                .pop(); // Close the loading dialog
+
+                            showDialog(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (BuildContext context) {
+                                return Dialog(
+                                  child: Container(
+                                    padding: EdgeInsets.all(16),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(Icons.check_circle,
+                                            color: Colors.green, size: 48),
+                                        SizedBox(height: 16),
+                                        Text('Akun berhasil dibuat!'),
+                                        SizedBox(height: 16),
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.of(context)
+                                                .pop(); // Close the success dialog
+                                          },
+                                          child: Text('OK'),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          });
                         },
                         child: Text(
-                          "Buat Akun",
+                          'Buat Akun',
                           style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                         style: ElevatedButton.styleFrom(
@@ -213,7 +295,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: RegisterInvestor(title: 'Register Investor', registrationData: registrationData),
+      home: RegisterInvestor(
+          title: 'Register Investor', registrationData: registrationData),
     );
   }
 }

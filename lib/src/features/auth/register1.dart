@@ -3,7 +3,6 @@ import 'registerinvestorpage.dart';
 import 'package:flutter/material.dart';
 import 'registermember.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -26,12 +25,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class registerpage1 extends StatefulWidget {
   final String title;
   final UserType? userType;
 
-  const registerpage1({Key? key, required this.title, required this.userType}) : super(key: key);
+  const registerpage1({Key? key, required this.title, required this.userType})
+      : super(key: key);
   @override
   State<registerpage1> createState() => _registerpage1State();
 }
@@ -42,7 +41,11 @@ class _registerpage1State extends State<registerpage1> {
   final TextEditingController nikController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+  final TextEditingController pekerjaanController = TextEditingController();
+  final TextEditingController perusahaanController = TextEditingController();
+  final TextEditingController penghasilanController = TextEditingController();
 
   void navigateToRegisterMember() {
     final registrationData = RegistrationData(
@@ -51,6 +54,8 @@ class _registerpage1State extends State<registerpage1> {
       email: emailController.text,
       password: passwordController.text,
       confirmPassword: confirmPasswordController.text,
+      pekerjaan: pekerjaanController.text,
+      jenisUsaha: null,
     );
     final registrationData2 = RegistrationData2(
       fullName: fullNameController.text,
@@ -58,21 +63,25 @@ class _registerpage1State extends State<registerpage1> {
       email: emailController.text,
       password: passwordController.text,
       confirmPassword: confirmPasswordController.text,
+      pekerjaan: pekerjaanController.text,
+      perusahaan: perusahaanController.text,
+      penghasilan: penghasilanController.text,
     );
     if (widget.userType.toString() == 'UserType.Member') {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (_) =>
-            RegisterMember(title: "test", registrationData: registrationData)),
+        MaterialPageRoute(
+            builder: (_) => RegisterMember(
+                title: "test", registrationData: registrationData)),
       );
-    }else{
+    } else {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (_) =>
-            RegisterInvestor(title: "test", registrationData: registrationData2)),
+        MaterialPageRoute(
+            builder: (_) => RegisterInvestor(
+                title: "test", registrationData: registrationData2)),
       );
     }
-
   }
 
   @override
@@ -98,7 +107,8 @@ class _registerpage1State extends State<registerpage1> {
               // mainAxisAlignment: MainAxisAlignment.center,
               // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container( // c1 atas
+                Container(
+                  // c1 atas
                   width: double.infinity,
                   margin: EdgeInsets.only(bottom: 12, left: 10, right: 10),
                   // decoration: BoxDecoration(
@@ -110,7 +120,7 @@ class _registerpage1State extends State<registerpage1> {
                     children: [
                       Container(
                         child: const Text(
-                          'Mari Buat Akun Anda ' ,
+                          'Mari Buat Akun Anda ',
                           textAlign: TextAlign.start,
                           style: TextStyle(
                             color: Color(0xFF002B5B),
@@ -123,8 +133,8 @@ class _registerpage1State extends State<registerpage1> {
                     ],
                   ),
                 ),
-
-                Container( //c2 form
+                Container(
+                  //c2 form
                   margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -141,11 +151,13 @@ class _registerpage1State extends State<registerpage1> {
                           controller: fullNameController,
                           decoration: InputDecoration(
                             contentPadding:
-                            EdgeInsets.symmetric(vertical: 16.0),
+                                EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "Nama Lengkap",
-                            prefixIcon: Icon(Icons.lock_outlined, color: Colors.white),
+                            prefixIcon:
+                                Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50), // Set the border radius to make it rounded
+                              borderRadius: BorderRadius.circular(
+                                  50), // Set the border radius to make it rounded
                             ),
                           ),
                         ),
@@ -162,11 +174,13 @@ class _registerpage1State extends State<registerpage1> {
                           controller: nikController,
                           decoration: InputDecoration(
                             contentPadding:
-                            EdgeInsets.symmetric(vertical: 16.0),
+                                EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "NIK",
-                            prefixIcon: Icon(Icons.lock_outlined, color: Colors.white),
+                            prefixIcon:
+                                Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50), // Set the border radius to make it rounded
+                              borderRadius: BorderRadius.circular(
+                                  50), // Set the border radius to make it rounded
                             ),
                           ),
                         ),
@@ -183,11 +197,13 @@ class _registerpage1State extends State<registerpage1> {
                           controller: emailController,
                           decoration: InputDecoration(
                             contentPadding:
-                            EdgeInsets.symmetric(vertical: 16.0),
+                                EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "Email",
-                            prefixIcon: Icon(Icons.lock_outlined, color: Colors.white),
+                            prefixIcon:
+                                Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50), // Set the border radius to make it rounded
+                              borderRadius: BorderRadius.circular(
+                                  50), // Set the border radius to make it rounded
                             ),
                           ),
                         ),
@@ -208,12 +224,13 @@ class _registerpage1State extends State<registerpage1> {
                           style: TextStyle(fontSize: 16.0, color: Colors.black),
                           decoration: InputDecoration(
                             contentPadding:
-                            EdgeInsets.symmetric(vertical: 16.0),
+                                EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "Password",
-                            prefixIcon: Icon(Icons.lock_outlined, color: Colors.white),
+                            prefixIcon:
+                                Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(50)),
+                                    BorderRadius.all(Radius.circular(50)),
                                 borderSide: BorderSide(
                                   color: Color(0xFF5C62FF),
                                   width: 3,
@@ -237,12 +254,15 @@ class _registerpage1State extends State<registerpage1> {
                           style: TextStyle(fontSize: 16.0, color: Colors.black),
                           decoration: InputDecoration(
                             contentPadding:
-                            EdgeInsets.symmetric(vertical: 16.0),
+                                EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "Konfirmasi Password",
-                            prefixIcon: Icon(Icons.lock_outlined, color: Colors.white,),
+                            prefixIcon: Icon(
+                              Icons.lock_outlined,
+                              color: Colors.white,
+                            ),
                             border: OutlineInputBorder(
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(50)),
+                                    BorderRadius.all(Radius.circular(50)),
                                 borderSide: BorderSide(
                                   color: Color(0xFF5C62FF),
                                   width: 3,
@@ -288,8 +308,8 @@ class _registerpage1State extends State<registerpage1> {
                     ),
                   ],
                 ),
-
-                Container( //c4logo
+                Container(
+                  //c4logo
                   margin: EdgeInsets.only(top: 10),
                   child: Container(
                     child: Row(
@@ -297,15 +317,14 @@ class _registerpage1State extends State<registerpage1> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          margin:
-                          EdgeInsets.only(bottom: 0, top: 20),
+                          margin: EdgeInsets.only(bottom: 0, top: 20),
                           child: const Image(
                               image: AssetImage('assets/TemanInvest_Logo.png')),
                           width: 250,
                         ),
                       ],
                     ),
-                  // Your container content here)
+                    // Your container content here)
                   ),
                 ),
               ],
