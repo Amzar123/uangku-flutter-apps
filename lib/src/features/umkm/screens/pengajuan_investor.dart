@@ -69,7 +69,7 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
             child: Scaffold(
               appBar: AppBar(
                 title: const Text(
-                  "Pengajuan Investor",
+                  "Pengajuan Pinjaman",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 centerTitle: true,

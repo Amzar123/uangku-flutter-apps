@@ -3,8 +3,7 @@ import 'package:apps/src/features/umkm/screens/home_umkm.dart';
 import 'package:apps/src/features/umkm/screens/list_investor.dart';
 import 'package:flutter/material.dart';
 
-import 'features/investor/screens/profile_investor.dart';
-
+import 'features/umkm/screens/profile_umkm.dart';
 
 class HomeUmkm extends StatefulWidget {
   const HomeUmkm({super.key});
@@ -25,7 +24,7 @@ class _HomeUmkmState extends State<HomeUmkm> {
   static const List<Widget> _pages = <Widget>[
     HomeUMKM(),
     ListInvestor(),
-    ProfileInvestorScreen(),
+    ProfileUmkmScreen(),
   ];
 
   @override
@@ -37,7 +36,8 @@ class _HomeUmkmState extends State<HomeUmkm> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: "Investor"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.newspaper), label: "Investor"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile")
         ],
         currentIndex: _selectedIndex,

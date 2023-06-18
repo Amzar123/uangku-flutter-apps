@@ -2,9 +2,33 @@ import 'package:apps/main.dart';
 import 'package:apps/src/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:apps/src/features/umkm/screens/riwayat_transaksi_screen.dart';
+
+import '../../../currency_format.dart';
 
 class HomeUMKM extends StatelessWidget {
   const HomeUMKM({super.key});
+
+  void _showSuccessAlert(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Success'),
+          content: Text('Pembayaran berhasil!'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context); // Close the alert dialog
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +81,7 @@ class HomeUMKM extends StatelessWidget {
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 16)),
-                                  Text("Rp.XX.XXX.XXX"),
+                                  Text("Rp.1.000.000"),
                                 ],
                               ),
                               const SizedBox(width: 20),
@@ -110,7 +134,7 @@ class HomeUMKM extends StatelessWidget {
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16)),
-                              Text("Rp.XX.XXX.XXX"),
+                              Text("Rp.1.000.000"),
                             ],
                           )
                         ],
@@ -145,8 +169,8 @@ class HomeUMKM extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text("Rp XXX.XXX"),
-                              Text("05 April 2023")
+                              Text("Rp 100.000"),
+                              Text("2 April 2023")
                             ],
                           )
                         ],
@@ -154,105 +178,103 @@ class HomeUMKM extends StatelessWidget {
                       const SizedBox(
                         height: 24,
                       ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                            onPressed: () {},
-                            child: const Text("Ingatkan Saya"),
-                            style: ElevatedButton.styleFrom(
-                                foregroundColor: Colors.black,
-                                backgroundColor: primaryColor)),
-                      )
+                      Center(
+                          child: ElevatedButton(
+                        onPressed: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Center(
+                                child: Container(
+                                  padding: EdgeInsets.all(8.0),
+                                  width: 300.0,
+                                  height: 200.0,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Jumlah Tagihan:',
+                                        style: TextStyle(
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        '100.000',
+                                        style: TextStyle(
+                                          fontSize: 30.0,
+                                        ),
+                                      ),
+                                      SizedBox(height: 16.0),
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.pop(
+                                              context); // Close the modal
+                                          _showSuccessAlert(
+                                              context); // Show the success alert
+                                        },
+                                        child: Text('Bayar Sekarang'),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        child: Text('Bayar'),
+                      ))
                     ],
                   )),
               const SizedBox(height: 24),
-              const Text(
-                "Riwayat Pengembalian",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-              ),
               Container(
-                  margin: const EdgeInsets.all(5),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: const Color(0x68666363)),
-                    color: const Color(0xffffffff),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Column(
-                    children: [
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(Icons.north_east),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Pengembalian 1",
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold)),
-                              Text("Peminjaman 1"),
-                            ],
-                          ),
-                          SizedBox(width: 20),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text("RpXXX.XXX",
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold)),
-                              Text("30 Maret 2023")
-                            ],
-                          )
-                        ],
-                      ),
-                      const Divider(color: Colors.grey, height: 24),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(Icons.south_west),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Peminjaman 1",
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold)),
-                              Text("Nama Investor"),
-                            ],
-                          ),
-                          SizedBox(width: 20),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text("RpXXX.XXX",
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold)),
-                              Text("30 Maret 2023")
-                            ],
-                          )
-                        ],
-                      ),
-                      const Divider(color: Colors.grey, height: 24),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              GestureDetector(
-                                onTap: () {},
-                                child: const Text("Lihat Semua",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: warnaKetiga)),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  )),
+                child: ListView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  children: <Widget>[
+                    _buildExpansionTile(
+                      title: 'Riwayat Transaksi',
+                      children: [
+                        _buildRiwayatTransaksiTile("Pengembalian", "Pinjaman 1",
+                            100000, "30 Maret 2023", Icons.north_east, () {
+                          // Tambahkan aksi saat container ditekan
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  DetailRiwayatTransaksiScreen(
+                                category: 'Pengembalian',
+                                title: 'UMKM Amiw Cell',
+                                amount: 100000,
+                                date: '30 Maret 2023',
+                              ),
+                            ),
+                          );
+                        }),
+                        _buildRiwayatTransaksiTile("Peminjaman", "John Doe",
+                            1000000, "23 Maret 2023", Icons.south_west, () {
+                          // Tambahkan aksi saat container ditekan
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  DetailRiwayatTransaksiScreen(
+                                category: 'Peminjaman',
+                                title: 'John Doe',
+                                amount: 1000000,
+                                date: '25 Maret 2023',
+                              ),
+                            ),
+                          );
+                        }),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -286,5 +308,67 @@ Widget _stepLine(Color color) {
     height: 2.0,
     width: 40.0,
     color: color,
+  );
+}
+
+Widget _buildExpansionTile({
+  required String title,
+  required List<Widget> children,
+}) {
+  return ExpansionTile(
+    title: Text(title,
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+    children: children,
+  );
+}
+
+Widget _buildRiwayatTransaksiTile(String category, String title, int amount,
+    String date, IconData icon, void Function() onPressed) {
+  return Container(
+    margin: const EdgeInsets.symmetric(vertical: 10),
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+    width: double.infinity,
+    decoration: BoxDecoration(
+      border: Border.all(color: const Color(0x68666363)),
+      color: const Color(0xffffffff),
+      borderRadius: BorderRadius.circular(8),
+    ),
+    child: GestureDetector(
+      onTap: onPressed,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(child: Icon(icon)),
+              SizedBox(width: 10),
+              Expanded(
+                flex: 3,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      category,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(title),
+                  ],
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    CurrencyFormat.convertToIdr(amount, 0),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(date),
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
+    ),
   );
 }
