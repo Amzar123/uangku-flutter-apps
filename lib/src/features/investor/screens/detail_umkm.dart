@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../main.dart';
 import '../../../constants.dart';
 import '../../../currency_format.dart';
 
@@ -31,11 +33,11 @@ class DetailUmkm extends StatelessWidget {
                   child: CircleAvatar(
                       radius: 25,
                       backgroundColor: Colors.grey[350],
-                      child:
-                          Icon(Icons.person, size: 25, color: Colors.black45)),
+                      child: const Icon(Icons.person,
+                          size: 25, color: Colors.black45)),
                 ),
-                SizedBox(width: 10),
-                Expanded(
+                const SizedBox(width: 10),
+                const Expanded(
                   flex: 3,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +64,7 @@ class DetailUmkm extends StatelessWidget {
                     ],
                   ),
                 ),
-                Expanded(
+                const Expanded(
                     child: Row(
                   children: [
                     Icon(Icons.star),
@@ -76,8 +78,8 @@ class DetailUmkm extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               width: double.infinity,
               decoration: BoxDecoration(
-                border: Border.all(color: Color(0x68666363)),
-                color: Color(0xffffffff),
+                border: Border.all(color: const Color(0x68666363)),
+                color: const Color(0xffffffff),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Row(
@@ -85,14 +87,14 @@ class DetailUmkm extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      Text(
+                      const Text(
                         "Plafon",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       Text(CurrencyFormat.convertToIdr(5000000, 0)),
                     ],
                   ),
-                  Column(
+                  const Column(
                     children: [
                       Text(
                         "Imbal Hasil",
@@ -101,7 +103,7 @@ class DetailUmkm extends StatelessWidget {
                       Text("$imbalHasil%"),
                     ],
                   ),
-                  Column(
+                  const Column(
                     children: [
                       Text(
                         "Tenor",
@@ -135,11 +137,7 @@ class DetailUmkm extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => DetailUmkm(),
-                  ),
-                );
+                context.read<InvestCubit>().invest(context);
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -147,11 +145,11 @@ class DetailUmkm extends StatelessWidget {
                     color: primaryColor),
                 width: 500.0,
                 padding: new EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                margin: EdgeInsets.symmetric(vertical: 20),
+                margin: const EdgeInsets.symmetric(vertical: 20),
                 child: new Column(children: [
                   new Text(
-                    "Invest Di sini",
-                    style: TextStyle(fontWeight: FontWeight.w500),
+                    "Invest disini",
+                    style: const TextStyle(fontWeight: FontWeight.w500),
                   ),
                 ]),
               ),

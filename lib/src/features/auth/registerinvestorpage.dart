@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class RegistrationData2 {
+import '../../../main.dart';
+
+class RegistrationDataInvestor {
   final String fullName;
   final String nik;
   final String email;
   final String password;
   final String confirmPassword;
 
-  RegistrationData2({
+  RegistrationDataInvestor({
     required this.fullName,
     required this.nik,
     required this.email,
@@ -17,9 +20,11 @@ class RegistrationData2 {
 }
 
 class RegisterInvestor extends StatefulWidget {
-  const RegisterInvestor({Key? key, required this.title, required this.registrationData}) : super(key: key);
+  const RegisterInvestor(
+      {Key? key, required this.title, required this.registrationData})
+      : super(key: key);
   final String title;
-  final RegistrationData2? registrationData;
+  final RegistrationDataInvestor? registrationData;
 
   @override
   State<RegisterInvestor> createState() => _RegisterInvestorState();
@@ -49,12 +54,13 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
               children: [
                 Container(
                   width: double.infinity,
-                  margin: const EdgeInsets.only(bottom: 12, left: 10, right: 10),
-                  child: Column(
+                  margin:
+                      const EdgeInsets.only(bottom: 12, left: 10, right: 10),
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         'Mari Buat Akun Anda',
                         textAlign: TextAlign.start,
                         style: TextStyle(
@@ -68,7 +74,8 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+                  margin:
+                      const EdgeInsets.only(bottom: 10, left: 10, right: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,9 +89,11 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
                           decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
+                            contentPadding:
+                                const EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "Pekerjaan",
-                            prefixIcon: Icon(Icons.lock_outlined, color: Colors.white),
+                            prefixIcon:
+                                Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
                             ),
@@ -101,9 +110,11 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
                           decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
+                            contentPadding:
+                                const EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "Perusahaan",
-                            prefixIcon: Icon(Icons.lock_outlined, color: Colors.white),
+                            prefixIcon:
+                                Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
                             ),
@@ -120,9 +131,11 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
                           decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
+                            contentPadding:
+                                const EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "Penghasilan",
-                            prefixIcon: Icon(Icons.lock_outlined, color: Colors.white),
+                            prefixIcon:
+                                Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
                             ),
@@ -142,23 +155,20 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                       width: 250,
                       child: ElevatedButton(
                         onPressed: () {
-                          // Navigator.push(
-                          //   //context,
-                          //   //MaterialPageRoute(
-                          //     //builder: (context) => TempScreen(),
-                          //   //),
-                          // );
+                          context
+                              .read<RegisterInvestorCubit>()
+                              .registration(context, widget.registrationData);
                         },
-                        child: Text(
-                          "Buat Akun",
-                          style: TextStyle(color: Colors.white, fontSize: 16),
-                        ),
                         style: ElevatedButton.styleFrom(
                           elevation: 0.0,
                           primary: Color(0xFF57C5B6),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50),
                           ),
+                        ),
+                        child: const Text(
+                          "Buat Akun",
+                          style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                       ),
                     ),
@@ -171,9 +181,7 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          child: Text('Gambar'),
-                        ),
+                        Text('Gambar'),
                         Container(
                           child: const Text(
                             'TemanInvest',
@@ -200,11 +208,11 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
 }
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final RegistrationData2? registrationData;
+  final RegistrationDataInvestor? registrationData;
   const MyApp({Key? key, this.registrationData});
   @override
   Widget build(BuildContext context) {
@@ -213,7 +221,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: RegisterInvestor(title: 'Register Investor', registrationData: registrationData),
+      home: RegisterInvestor(
+          title: 'Register Investor', registrationData: registrationData),
     );
   }
 }
