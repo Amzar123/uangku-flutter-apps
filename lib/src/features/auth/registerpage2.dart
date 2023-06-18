@@ -1,30 +1,10 @@
+import 'package:apps/src/features/auth/register1.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'registermember.dart';
 
-
-// Event untuk mengarahkan navigasi ke halaman RegisterPage1
-class NavigateToRegisterPage1Event extends Object {}
-
-// Bloc untuk mengelola navigasi
-class NavigationBloc extends Bloc<Object, Object> {
-  NavigationBloc() : super(Object());
-
-  @override
-  Stream<Object> mapEventToState(Object event) async* {
-    if (event is NavigateToRegisterPage1Event) {
-      yield* navigateToRegisterPage2();
-    }
-  }
-
-  Stream<Object> navigateToRegisterPage2() async* {
-    yield RegisterPage2(title: "title");
-  }
-}
 
 class RegisterPage2 extends StatefulWidget {
-  const RegisterPage2({Key? key, required this.title}) : super(key: key);
-  final String title;
+  const RegisterPage2({Key? key}) : super(key: key);
 
   @override
   State<RegisterPage2> createState() => _RegisterPage2State();
@@ -33,20 +13,8 @@ class RegisterPage2 extends StatefulWidget {
 enum UserType { Investor, Member }
 
 class _RegisterPage2State extends State<RegisterPage2> {
-  UserType? jenisuser;
-  late NavigationBloc _navigationBloc;
-
-  @override
-  void initState() {
-    super.initState();
-    _navigationBloc = NavigationBloc();
-  }
-
-  @override
-  void dispose() {
-    _navigationBloc.close();
-    super.dispose();
-  }
+  // UserType? jenisuser;
+  UserType? selectedUserType;
 
   @override
   Widget build(BuildContext context) {
@@ -72,11 +40,6 @@ class _RegisterPage2State extends State<RegisterPage2> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 10),
-                        height: 50,
-                        child: Text('gambar'),
-                      ),
                       Container(
                         margin: EdgeInsets.only(bottom: 15, left: 10),
                         child: const Text(
@@ -130,10 +93,10 @@ class _RegisterPage2State extends State<RegisterPage2> {
                         child: RadioListTile<UserType>(
                           title: const Text('Investor'),
                           value: UserType.Investor,
-                          groupValue: jenisuser,
+                          groupValue: selectedUserType,
                           onChanged: (UserType? value) {
                             setState(() {
-                              jenisuser = value;
+                              selectedUserType = value;
                             });
                           },
                         ),
@@ -150,10 +113,10 @@ class _RegisterPage2State extends State<RegisterPage2> {
                         child: RadioListTile<UserType>(
                           title: const Text('Member'),
                           value: UserType.Member,
-                          groupValue: jenisuser,
+                          groupValue: selectedUserType,
                           onChanged: (UserType? value) {
                             setState(() {
-                              jenisuser = value;
+                              selectedUserType = value;
                             });
                           },
                         ),
@@ -171,10 +134,19 @@ class _RegisterPage2State extends State<RegisterPage2> {
                       width: 250,
                       child: ElevatedButton(
                         onPressed: () {
-                          _navigationBloc.add(NavigateToRegisterPage1Event());
+                          // Navigate to the next page
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => registerpage1(
+                                title: "title",
+                                userType: selectedUserType,
+                              ),
+                            ),
+                          );
                         },
                         child: Text(
-                          "Lanjutkan",
+                          'Lanjutkan',
                           style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                         style: ElevatedButton.styleFrom(
@@ -236,10 +208,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: BlocProvider(
-        create: (context) => NavigationBloc(),
-        child: RegisterPage2(title: 'MyProject'),
-      ),
+      home: RegisterPage2(),
     );
   }
 }

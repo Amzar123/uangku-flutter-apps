@@ -1,52 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:apps/src/temp.dart';
 
+class RegistrationData2 {
+  final String fullName;
+  final String nik;
+  final String email;
+  final String password;
+  final String confirmPassword;
 
-// Event untuk mengarahkan navigasi ke halaman TempScreen
-class NavigateToTempScreenEvent extends Object {}
-
-// Bloc untuk mengelola navigasi
-class NavigationBloc extends Bloc<Object, Object> {
-  NavigationBloc() : super(Object());
-
-  @override
-  Stream<Object> mapEventToState(Object event) async* {
-    if (event is NavigateToTempScreenEvent) {
-      yield* navigateToTempScreen();
-    }
-  }
-
-  Stream<Object> navigateToTempScreen() async* {
-    yield const TempScreen();
-  }
+  RegistrationData2({
+    required this.fullName,
+    required this.nik,
+    required this.email,
+    required this.password,
+    required this.confirmPassword,
+  });
 }
 
 class RegisterInvestor extends StatefulWidget {
-  const RegisterInvestor({Key? key, required this.title}) : super(key: key);
+  const RegisterInvestor({Key? key, required this.title, required this.registrationData}) : super(key: key);
   final String title;
+  final RegistrationData2? registrationData;
 
   @override
   State<RegisterInvestor> createState() => _RegisterInvestorState();
 }
 
 class _RegisterInvestorState extends State<RegisterInvestor> {
-  late NavigationBloc _navigationBloc;
-
-  @override
-  void initState() {
-    super.initState();
-    _navigationBloc = NavigationBloc();
-  }
-
-  @override
-  void dispose() {
-    _navigationBloc.close();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
+    print('Full Name: ${widget.registrationData?.fullName}');
+    print('NIK: ${widget.registrationData?.nik}');
+    print('Email: ${widget.registrationData?.email}');
+    print('Password: ${widget.registrationData?.password}');
+    print('Confirm Password: ${widget.registrationData?.confirmPassword}');
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -59,7 +45,6 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            // width: double.infinity, // 100% max width parent
             child: Column(
               children: [
                 Container(
@@ -69,7 +54,6 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Gambar'),
                       const Text(
                         'Mari Buat Akun Anda',
                         textAlign: TextAlign.start,
@@ -102,7 +86,7 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                             labelText: "Pekerjaan",
                             prefixIcon: Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50), // Set the border radius to make it rounded
+                              borderRadius: BorderRadius.circular(50),
                             ),
                           ),
                         ),
@@ -121,7 +105,7 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                             labelText: "Perusahaan",
                             prefixIcon: Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50), // Set the border radius to make it rounded
+                              borderRadius: BorderRadius.circular(50),
                             ),
                           ),
                         ),
@@ -140,7 +124,7 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                             labelText: "Penghasilan",
                             prefixIcon: Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50), // Set the border radius to make it rounded
+                              borderRadius: BorderRadius.circular(50),
                             ),
                           ),
                         ),
@@ -158,7 +142,12 @@ class _RegisterInvestorState extends State<RegisterInvestor> {
                       width: 250,
                       child: ElevatedButton(
                         onPressed: () {
-                          _navigationBloc.add(NavigateToTempScreenEvent());
+                          // Navigator.push(
+                          //   //context,
+                          //   //MaterialPageRoute(
+                          //     //builder: (context) => TempScreen(),
+                          //   //),
+                          // );
                         },
                         child: Text(
                           "Buat Akun",
@@ -215,18 +204,16 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  final RegistrationData2? registrationData;
+  const MyApp({Key? key, this.registrationData});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Project',
+      title: 'Register Member',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: BlocProvider(
-        create: (context) => NavigationBloc(),
-        child: RegisterInvestor(title: 'MyProject'),
-      ),
+      home: RegisterInvestor(title: 'Register Investor', registrationData: registrationData),
     );
   }
 }
