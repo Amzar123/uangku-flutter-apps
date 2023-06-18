@@ -171,7 +171,7 @@ class _DashboardInvestorScreenState extends State<DashboardInvestorScreen> {
                       leadingIcon: Icons.trending_up,
                       title: 'Investasi Aktif',
                       children: [
-                        _buildInvestasiAktifTile("Pinjaman 1", 3000000, Icon(Icons.done_all, color: primaryColor,),() {
+                        _buildInvestasiAktifTile("Pinjaman 1", 3000000, () {
                           // Tambahkan aksi saat list tile ditekan
                           Navigator.of(context).push(
                             MaterialPageRoute(
@@ -182,7 +182,7 @@ class _DashboardInvestorScreenState extends State<DashboardInvestorScreen> {
                                     )),
                           );
                         }),
-                        _buildInvestasiAktifTile("Pinjaman 2", 1500000, Icon(Icons.hourglass_empty),() {
+                        _buildInvestasiAktifTile("Pinjaman 2", 1500000,() {
                           // Tambahkan aksi saat list tile ditekan
                           Navigator.of(context).push(
                             MaterialPageRoute(
@@ -193,7 +193,7 @@ class _DashboardInvestorScreenState extends State<DashboardInvestorScreen> {
                                     )),
                           );
                         }),
-                        _buildInvestasiAktifTile("Pinjaman 3", 1000000, Icon(Icons.done_all, color: primaryColor), () {
+                        _buildInvestasiAktifTile("Pinjaman 3", 1000000, () {
                           // Tambahkan aksi saat list tile ditekan
                           Navigator.of(context).push(
                             MaterialPageRoute(
@@ -298,10 +298,9 @@ class _DashboardInvestorScreenState extends State<DashboardInvestorScreen> {
   }
 
   Widget _buildInvestasiAktifTile(
-      String title, int amount, Widget trailingIcon,void Function() onPressed) {
+      String title, int amount,void Function() onPressed) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      margin: const EdgeInsets.symmetric(vertical: 5),
       width: double.infinity,
       decoration: BoxDecoration(
         border: Border.all(color: const Color(0x68666363)),
@@ -313,7 +312,6 @@ class _DashboardInvestorScreenState extends State<DashboardInvestorScreen> {
           ListTile(
             title: Text(title),
             subtitle: Text(CurrencyFormat.convertToIdr(amount, 0)),
-            trailing: trailingIcon,
             onTap: onPressed,
           ),
         ],
@@ -324,8 +322,7 @@ class _DashboardInvestorScreenState extends State<DashboardInvestorScreen> {
   Widget _buildPengajuanPinjamanTile(
       String title, int amount, String duration, void Function() onPressed) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      margin: const EdgeInsets.symmetric(vertical: 5),
       width: double.infinity,
       decoration: BoxDecoration(
         border: Border.all(color: const Color(0x68666363)),
@@ -338,9 +335,10 @@ class _DashboardInvestorScreenState extends State<DashboardInvestorScreen> {
             title: Text(title),
             subtitle:
                 Text("${CurrencyFormat.convertToIdr(amount, 0)} - $duration"),
-            trailing: OutlinedButton(
+            trailing: ElevatedButton(
               onPressed: onPressed,
-              style: OutlinedButton.styleFrom(
+              style: ElevatedButton.styleFrom(
+                elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
                 ),

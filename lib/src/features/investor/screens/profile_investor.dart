@@ -1,10 +1,10 @@
 import 'package:apps/src/constants.dart';
-import 'package:apps/src/features/investor/screens/profile/data_umkm.dart';
-import 'package:apps/src/features/investor/screens/profile/kebijakan_privasi.dart';
-import 'package:apps/src/features/investor/screens/profile/kemanan_akun.dart';
-import 'package:apps/src/features/investor/screens/profile/pusat_bantuan.dart';
-import 'package:apps/src/features/investor/screens/profile/rekening_bank.dart';
-import 'package:apps/src/features/investor/screens/profile/syarat_dan_ketentuan.dart';
+import 'package:apps/src/features/profile/data_umkm.dart';
+import 'package:apps/src/features/profile/kebijakan_privasi.dart';
+import 'package:apps/src/features/profile/kemanan_akun.dart';
+import 'package:apps/src/features/profile/pusat_bantuan.dart';
+import 'package:apps/src/features/profile/rekening_bank.dart';
+import 'package:apps/src/features/profile/syarat_dan_ketentuan.dart';
 import 'package:flutter/material.dart';
 
 class ProfileInvestorScreen extends StatelessWidget {

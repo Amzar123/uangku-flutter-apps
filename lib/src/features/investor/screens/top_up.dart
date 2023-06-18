@@ -41,7 +41,7 @@ class TopUpScreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      backgroundColor: secondaryColor,
+                      backgroundColor: primaryColor,
                     ),
                     child: Text(
                       CurrencyFormat.convertToIdr(amount, 0),
