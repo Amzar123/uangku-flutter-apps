@@ -93,10 +93,10 @@ class _RegisterPage1State extends State<RegisterPage1> {
                         child: TextField(
                           decoration: InputDecoration(
                             contentPadding:
-                            EdgeInsets.symmetric(vertical: 16.0),
+                                EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "Nama Lengkap",
                             prefixIcon:
-                            Icon(Icons.lock_outlined, color: Colors.white),
+                                Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50),
                             ),
@@ -114,11 +114,13 @@ class _RegisterPage1State extends State<RegisterPage1> {
                         child: TextField(
                           decoration: InputDecoration(
                             contentPadding:
-                            EdgeInsets.symmetric(vertical: 16.0),
+                                EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "NIK",
-                            prefixIcon: Icon(Icons.lock_outlined, color: Colors.white),
+                            prefixIcon:
+                                Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50), // Set the border radius to make it rounded
+                              borderRadius: BorderRadius.circular(
+                                  50), // Set the border radius to make it rounded
                             ),
                           ),
                         ),
@@ -134,11 +136,13 @@ class _RegisterPage1State extends State<RegisterPage1> {
                         child: TextField(
                           decoration: InputDecoration(
                             contentPadding:
-                            EdgeInsets.symmetric(vertical: 16.0),
+                                EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "Email",
-                            prefixIcon: Icon(Icons.lock_outlined, color: Colors.white),
+                            prefixIcon:
+                                Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50), // Set the border radius to make it rounded
+                              borderRadius: BorderRadius.circular(
+                                  50), // Set the border radius to make it rounded
                             ),
                           ),
                         ),
@@ -158,12 +162,13 @@ class _RegisterPage1State extends State<RegisterPage1> {
                           style: TextStyle(fontSize: 16.0, color: Colors.black),
                           decoration: InputDecoration(
                             contentPadding:
-                            EdgeInsets.symmetric(vertical: 16.0),
+                                EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "Password",
-                            prefixIcon: Icon(Icons.lock_outlined, color: Colors.white),
+                            prefixIcon:
+                                Icon(Icons.lock_outlined, color: Colors.white),
                             border: OutlineInputBorder(
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(50)),
+                                    BorderRadius.all(Radius.circular(50)),
                                 borderSide: BorderSide(
                                   color: Color(0xFF5C62FF),
                                   width: 3,
@@ -186,12 +191,15 @@ class _RegisterPage1State extends State<RegisterPage1> {
                           style: TextStyle(fontSize: 16.0, color: Colors.black),
                           decoration: InputDecoration(
                             contentPadding:
-                            EdgeInsets.symmetric(vertical: 16.0),
+                                EdgeInsets.symmetric(vertical: 16.0),
                             labelText: "Konfirmasi Password",
-                            prefixIcon: Icon(Icons.lock_outlined, color: Colors.white,),
+                            prefixIcon: Icon(
+                              Icons.lock_outlined,
+                              color: Colors.white,
+                            ),
                             border: OutlineInputBorder(
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(50)),
+                                    BorderRadius.all(Radius.circular(50)),
                                 borderSide: BorderSide(
                                   color: Color(0xFF5C62FF),
                                   width: 3,
