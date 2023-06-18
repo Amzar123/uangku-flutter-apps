@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'registermember.dart';
 
-// Event untuk mengarahkan navigasi ke halaman RegisterMember
-class NavigateToRegisterMemberEvent extends Object {}
+
+// Event untuk mengarahkan navigasi ke halaman RegisterPage1
+class NavigateToRegisterPage1Event extends Object {}
 
 // Bloc untuk mengelola navigasi
 class NavigationBloc extends Bloc<Object, Object> {
@@ -11,13 +12,13 @@ class NavigationBloc extends Bloc<Object, Object> {
 
   @override
   Stream<Object> mapEventToState(Object event) async* {
-    if (event is NavigateToRegisterMemberEvent) {
-      yield* navigateToRegisterMember();
+    if (event is NavigateToRegisterPage1Event) {
+      yield* navigateToRegisterPage2();
     }
   }
 
-  Stream<Object> navigateToRegisterMember() async* {
-    yield RegisterMember(title: "title");
+  Stream<Object> navigateToRegisterPage2() async* {
+    yield RegisterPage2(title: "title");
   }
 }
 
@@ -50,6 +51,14 @@ class _RegisterPage2State extends State<RegisterPage2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
@@ -162,7 +171,7 @@ class _RegisterPage2State extends State<RegisterPage2> {
                       width: 250,
                       child: ElevatedButton(
                         onPressed: () {
-                          _navigationBloc.add(NavigateToRegisterMemberEvent());
+                          _navigationBloc.add(NavigateToRegisterPage1Event());
                         },
                         child: Text(
                           "Lanjutkan",
