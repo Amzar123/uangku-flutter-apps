@@ -1,3 +1,4 @@
+import 'package:apps/main.dart';
 import 'package:apps/src/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -423,7 +424,11 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                             primaryColor, // <-- Button color
                                         foregroundColor: warnaKeempat,
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        context
+                                            .read<InvestApplicationCubit>()
+                                            .applyInvestor();
+                                      },
                                       child: const Text(
                                         "Apply",
                                         style: TextStyle(color: Colors.black),

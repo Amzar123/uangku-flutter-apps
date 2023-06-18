@@ -44,13 +44,53 @@ class UMKMCubit extends Cubit<List<UMKMModel>> {
   }
 }
 
+// invest application cubit
+class InvestApplicationModel {
+  String investorId;
+  String businessId;
+  String amount;
+  String duration;
+  String deviden;
+  InvestApplicationModel(
+      {required this.investorId,
+      required this.businessId,
+      required this.amount,
+      required this.duration,
+      required this.deviden}); //constructor
+}
+
+class InvestApplicationCubit extends Cubit<InvestApplicationModel> {
+  String url = "http://localhost:3000/v1/invest-applications";
+  InvestApplicationCubit()
+      : super(InvestApplicationModel(
+            investorId: "",
+            businessId: "",
+            amount: "0",
+            duration: "0",
+            deviden: "0"));
+
+  void applyInvestor() async {
+    final response = await http.post(Uri.parse(url), body: {
+      "investorId": "648db840705c2c19ada9c1c9",
+      "businessId": "648db840705c2c19ada9c1c7",
+      "amount": 100.toString(),
+      "duration": 12.toString(),
+      "deviden": 3.toString()
+    });
+  }
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider<UMKMCubit>(create: (_) => UMKMCubit())],
+      providers: [
+        BlocProvider<UMKMCubit>(create: (_) => UMKMCubit()),
+        BlocProvider<InvestApplicationCubit>(
+            create: (_) => InvestApplicationCubit())
+      ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
