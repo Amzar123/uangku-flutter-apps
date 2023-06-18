@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:apps/src/features/umkm/bloc/umkm_bloc.dart';
+import 'package:apps/src/features/umkm/screens/home_umkm.dart';
 import 'package:apps/src/features/umkm/screens/list_investor.dart';
 import 'package:apps/src/temp.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +70,7 @@ class InvestApplicationCubit extends Cubit<InvestApplicationModel> {
             duration: "0",
             deviden: "0"));
 
-  void applyInvestor() async {
+  void applyInvestor(BuildContext context) async {
     final response = await http.post(Uri.parse(url), body: {
       "investorId": "648db840705c2c19ada9c1c9",
       "businessId": "648db840705c2c19ada9c1c7",
@@ -77,6 +78,15 @@ class InvestApplicationCubit extends Cubit<InvestApplicationModel> {
       "duration": 12.toString(),
       "deviden": 3.toString()
     });
+
+    if (response.statusCode == 200) {
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).push(MaterialPageRoute(builder: ((context) {
+        return const HomeUMKM();
+      })));
+    } else {
+      throw Error();
+    }
   }
 }
 

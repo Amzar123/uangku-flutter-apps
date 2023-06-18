@@ -427,7 +427,7 @@ class _PengajuanInvestorState extends State<PengajuanInvestor> {
                                       onPressed: () {
                                         context
                                             .read<InvestApplicationCubit>()
-                                            .applyInvestor();
+                                            .applyInvestor(context);
                                       },
                                       child: const Text(
                                         "Apply",
