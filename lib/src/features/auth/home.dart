@@ -70,34 +70,28 @@ class _MyHomePageState extends State<MyHomePage> {
                                 children: <Widget>[
                                   Container(
                                     child: Image(
-                                        image: AssetImage('assets/logo.png')),
+                                        image: AssetImage('assets/TemanInvest_Logo2.png')),
                                     width: 200,
                                     height: 200,
                                   ),
                                   Container(
                                     margin:
-                                    EdgeInsets.only(bottom: 30, top: 20),
-                                    child: const Text(
-                                      'TemanInvest',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Color(0xFF002B5B),
-                                        fontSize: 32,
-                                        fontWeight: FontWeight.w600,
-                                        fontFamily: 'Inter',
-                                      ),
-                                    ),
+                                        EdgeInsets.only(bottom: 30, top: 20),
+                                    child: const Image(
+                                        image: AssetImage('assets/TemanInvest_Logo.png')),
+                                    width: 250,
+                                    height: 200,
                                   ),
-                                  Container(
-                                    child: const Text(
-                                      'Sahabat investasi masyarakat',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Color(0xFF1A5F7A),
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
+                                  // Container(
+                                  //   child: const Text(
+                                  //     'Sahabat investasi masyarakat',
+                                  //     textAlign: TextAlign.center,
+                                  //     style: TextStyle(
+                                  //       color: Color(0xFF1A5F7A),
+                                  //       fontSize: 16,
+                                  //     ),
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
@@ -120,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (_) => login_page(title: "title")));
+                                builder: (_) => LoginPage(title: "title")));
                       },
                       child: Text(
                         "Mulai aplikasi",

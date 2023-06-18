@@ -1,56 +1,21 @@
-import 'package:apps/src/features/auth/registermember.dart';
-import 'package:apps/src/features/auth/registerpage2.dart';
-import 'package:apps/src/features/auth/register1.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../homeinvestor.dart';
-import 'register1.dart';
-import 'registerinvestorpage.dart';
+import 'package:apps/src/features/auth/registerpage2.dart';
 
-// Event untuk mengarahkan navigasi ke halaman Home
-class NavigateToHomeEvent extends Object {}
-
-// Bloc untuk mengelola navigasi
-class NavigationBloc extends Bloc<Object, Object> {
-  NavigationBloc() : super(Object());
-
-  @override
-  Stream<Object> mapEventToState(Object event) async* {
-    if (event is NavigateToHomeEvent) {
-      yield* navigateToHome();
-    }
-  }
-
-  Stream<Object> navigateToHome() async* {
-    yield Home();
-  }
-}
-
-class login_page extends StatefulWidget {
-  const login_page({Key? key, required this.title}) : super(key: key);
+class LoginPage extends StatelessWidget {
+  const LoginPage({Key? key, required this.title}) : super(key: key);
   final String title;
-  @override
-  State<login_page> createState() => _login_pageState();
-}
-
-class _login_pageState extends State<login_page> {
-  late NavigationBloc _navigationBloc;
-
-  @override
-  void initState() {
-    super.initState();
-    _navigationBloc = NavigationBloc();
-  }
-
-  @override
-  void dispose() {
-    _navigationBloc.close();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
@@ -67,28 +32,13 @@ class _login_pageState extends State<login_page> {
                         children: [
                           Container(),
                           Container(
-                            child: const Text(
-                              'TemanInvest',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Color(0xFF002B5B),
-                                fontSize: 32,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'Inter',
-                              ),
-                            ),
+                            margin:
+                            EdgeInsets.only(bottom: 0, top: 20),
+                            child: const Image(
+                                image: AssetImage('assets/TemanInvest_Logo.png')),
+                            width: 250,
                           ),
                         ],
-                      ),
-                      Container(
-                        child: const Text(
-                          'Sahabat investasi masyarakat',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color(0xFF1A5F7A),
-                            fontSize: 16,
-                          ),
-                        ),
                       ),
                     ],
                   ),
@@ -129,7 +79,8 @@ class _login_pageState extends State<login_page> {
                           obscureText: true,
                           enableSuggestions: false,
                           autocorrect: false,
-                          style: TextStyle(fontSize: 16.0, color: Colors.black),
+                          style:
+                          TextStyle(fontSize: 16.0, color: Colors.black),
                           decoration: InputDecoration(
                             contentPadding:
                             EdgeInsets.symmetric(vertical: 16.0),
@@ -155,7 +106,12 @@ class _login_pageState extends State<login_page> {
                   width: 200,
                   child: ElevatedButton(
                     onPressed: () {
-                      _navigationBloc.add(NavigateToHomeEvent());
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => Home(),
+                        ),
+                      );
                     },
                     child: Text(
                       "Masuk",
@@ -183,14 +139,18 @@ class _login_pageState extends State<login_page> {
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => RegisterPage2(title: "title")));
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => RegisterPage2(),
+                          ),
+                        );
                       },
                       child: Text(
                         ' Daftar sekarang',
                         style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold),
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     )
                   ],
@@ -200,6 +160,37 @@ class _login_pageState extends State<login_page> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class Home extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home'),
+      ),
+      body: Center(
+        child: Text('Welcome to the Home Page!'),
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Login Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: LoginPage(title: 'Login'),
     );
   }
 }
