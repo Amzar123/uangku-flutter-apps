@@ -33,9 +33,9 @@ class UMKMCubit extends Cubit<List<UMKMModel>> {
       ListUMKModel.add(UMKMModel(userId: userId, saldo: saldo));
     }
     emit(ListUMKModel);
-  }
+}
 
-  void fetchData() async {
+void fetchData() async {
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       setFromJson(jsonDecode(response.body));
